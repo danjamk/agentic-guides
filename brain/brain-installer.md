@@ -28,6 +28,7 @@ You are installing a personal knowledge system ("brain") for a non-technical per
 
 ### How to use these instructions
 
+- **Read this whole file before you start.** If you received it from a link and only got a summary or part of it, don't install from that. Get the full text another way (for example, download the raw file), or ask the user to download it and drag it into the conversation. If the link doesn't open at all, don't ask the user technical questions about versions, branches, or URLs. Ask them to use the download option on the installer's page instead.
 - **They're written for Claude in the desktop app on a Mac, as of October 2026,** with a local folder connected to the conversation. Anthropic is merging Cowork into regular conversations, so the user may or may not see a separate Cowork mode. If you're a different assistant, or running somewhere else (Windows, a web or phone chat, a coding tool), adapt the steps to what you can do there: how you reach the folder, how you save files, which menus you mention, and which instructions file your platform reads at the start of a session. Tell the user in one line what you changed and why. If you can't reach a folder on the user's computer at all, say so and stop rather than pretending to save files.
 - **Adapt to the person.** The interview and templates are a starting point, not a script. If you already know things about the user from memory, earlier conversations, or files they've shared, use them. Skip questions you can already answer, and confirm what you know instead of asking again ("I have you down as a freelance designer with two clients. Still right?"). Reword questions, change their order, or add a follow-up when it helps. The goal is a brain that fits this person.
 - **The rules in the next section don't change.** Adapt everything else.
@@ -46,11 +47,12 @@ The brain has two parts:
 - **Fill every `{{PLACEHOLDER}}`** from the interview. If something was skipped, remove that line or section instead of leaving a placeholder behind. Never invent details the user didn't give you.
 - **Today's date** is the date of this session. If you aren't sure of it, check the computer's clock or ask the user. Use `YYYY-MM-DD` format in file names.
 - **Never save passwords, account numbers, or ID numbers**, even if the user offers them. Leave them out and say why in one line.
+- **Don't create test files** to check whether you can write to the folder. The first real file is the test. You may not be allowed to delete a test file afterward.
 - **If saving a file fails,** stop. Tell the user in plain words which files were created and which weren't. Don't retry by deleting or overwriting anything.
 
 ### Step 1: Check the folder
 
-You may have received this installer as a file or by reading it from a link. Either way, look at the folder connected to this conversation. Ignore hidden system files (names starting with `.`, such as `.DS_Store`) and this installer file itself, if it's there. They don't count when deciding whether the folder is empty.
+You may have received this installer as a file or by reading it from a link. Either way, look at the folder connected to this conversation. Ignore hidden system files (names starting with `.`, such as `.DS_Store`), any folder the app creates for its own output (such as `Claude outputs`), and this installer file itself, if it's there. They don't count when deciding whether the folder is empty.
 
 - If it's **empty**, continue.
 - If it contains **files that look like a brain** (a `CLAUDE.md` or a `hot.md`), don't install. Look in `CLAUDE.md` for a line like "Installed with brain-vX.Y" or "Updated to brain-vX.Y."
@@ -77,12 +79,12 @@ All the rules for the whole install still apply.
 
 Open with one short line:
 
-> I'll ask you about eight quick questions, then suggest how to set up your brain. Short answers are fine, and you can say "skip" to anything.
+> I'll ask you seven or eight quick questions, then suggest how to set up your brain. Short answers are fine, and you can say "skip" to anything.
 
 Then ask these questions, in order and one at a time. The bracketed notes are for you, not the user.
 
-1. **What should I call you, and what's taking most of your attention these days?** Work, a job search, school, family, a project, or anything else. One or two sentences is plenty.
-   [Fills `{{NAME}}` and `{{ABOUT_ME}}`. Don't assume the user has a job.]
+1. **What's taking most of your attention these days? And what should I call you?** Work, a job search, school, family, a project, or anything else. One or two sentences is plenty.
+   [Fills `{{NAME}}` and `{{ABOUT_ME}}`. Don't assume the user has a job. If they answer only the first part, ask for their name before moving on.]
 
 2. **What are the main parts of your life or work you'd like help keeping track of?** Name as many as you like. For example: my job, my clients, a job search, school, a side business, family, health, home, money, a hobby.
    [Each answer is a candidate area. Don't create anything yet. Step 3 turns these into folders.]
@@ -100,7 +102,7 @@ Then ask these questions, in order and one at a time. The bracketed notes are fo
    - (d) Writing: posts, articles, or newsletters
    - (e) Research and learning
    - (f) Life admin: appointments, family plans, bills, and household tasks
-   [(d) adds the `writing/` folder. (e) adds the `wiki/` folder. All answers shape the "What to help with" section of CLAUDE.md.]
+   [(d) adds the `writing/` folder. (e) adds the `wiki/` folder. All answers shape the "What to help with" section of CLAUDE.md. If the user stresses something specific ("lots of financial analysis"), keep it in their words. There are six options, so if your multiple-choice tool allows fewer, ask this one as plain text.]
 
 6. **How careful should I be when saving things?**
    - (a) Ask me before saving anything.
@@ -117,9 +119,11 @@ Turn the candidate areas from Q2 into folders. Each area gets one of three shape
 
 | Shape | Use it for | What it looks like |
 |---|---|---|
-| **Separate** | Things whose information must never mix: clients, customer accounts, patients, separate businesses | `<area>/<item>/overview.md`, plus `<area>/<item>/people/` for that item's people. Each item is walled off from the others. |
-| **List** | A set of similar things that come and go: projects, job applications, courses, events | `<area>/README.md`, plus one note per item: `<area>/<item>.md`, each with a status |
-| **Ongoing** | One continuing part of life: health, home, family, money, a hobby, general job admin | `<area>/README.md`. Notes get added inside over time. |
+| **Separate** | Things whose information must never mix: clients, customer accounts, patients, separate businesses | One folder per item, with a main note named after the item: `<area>/<item>/<item>.md`. That item's people go in `<area>/<item>/people/`, created when the first person is added. Each item is walled off from the others. |
+| **List** | A set of similar things that come and go: projects, job applications, courses, events | A main note named after the area, `<area>/<area>.md`, plus one note per item: `<area>/<item>.md`, each with a status |
+| **Ongoing** | One continuing part of life: health, home, family, money, a hobby, general job admin | A main note named after the area: `<area>/<area>.md`. Notes get added inside over time. |
+
+Main notes are named after their folder, not `README.md` or `overview.md`, so a link like `[[family]]` or `[[acme]]` finds the right note. For the same reason, keep every note's name unique across the brain.
 
 Design rules:
 
@@ -129,7 +133,7 @@ Design rules:
 - **Go no deeper than three levels:** area, item, and the item's `people/` folder.
 - **Mark personal areas private** (health, family, money, relationships, and anything the user calls private). If the brain has both work areas and private areas, put the private ones under `personal/` so the line between them is clear. If the brain is mostly personal, keep them at the top level.
 - **Separate shape is the default for clients and customer accounts.** Mention it in the summary so the user can say no.
-- **People** who belong to one item in a separate area go in that item's `people/` folder. Everyone else goes in the shared `people/` folder.
+- **People** who belong to one item in a separate area go in that item's `people/` folder. People who belong to a private area (family members, a doctor) go in a `people/` folder inside the private area: `personal/people/` if private areas are grouped under `personal/`, or `<area>/people/` if not. Everyone else goes in the shared `people/` folder.
 
 ### Step 4: Confirm before writing
 
@@ -156,22 +160,23 @@ Create the files below using the templates in the Templates section.
 - `hot.md`, from Template B
 - `inbox.md`, from Template C
 - `daily/{{TODAY}}.md`, from Template D
-- `people/<first-name>.md` for each person in Q4 who doesn't belong to one item in a separate area, from Template E
+- `people/<first-name>.md` for each person in Q4 who doesn't belong to a separate item or a private area, from Template E
 
 **Areas:**
-- Separate shape: `<area>/<item-slug>/overview.md` for each item, from Template H, and `<area>/<item-slug>/people/<first-name>.md` for each person who belongs to that item, from Template E
-- List shape: `<area>/README.md` from Template F, and `<area>/<item-slug>.md` for each item, from Template G
-- Ongoing shape: `<area>/README.md`, from Template F
+- Separate shape: `<area>/<item-slug>/<item-slug>.md` for each item, from Template H, and `<area>/<item-slug>/people/<first-name>.md` for each person who belongs to that item, from Template E. Don't create an empty `people/` folder for an item with no people yet.
+- List shape: `<area>/<area>.md` from Template F, and `<area>/<item-slug>.md` for each item, from Template G
+- Ongoing shape: `<area>/<area>.md`, from Template F
+- People who belong to a private area: in that area's `people/` folder (see Step 3), from Template E
 
 **Only if selected in Q5:**
 - `writing/ideas.md`, from Template I, if Q5 includes (d)
-- `wiki/README.md`, from Template J, if Q5 includes (e)
+- `wiki/wiki.md`, from Template J, if Q5 includes (e)
 
 Don't create `decisions/` or `archive/` now. CLAUDE.md tells Claude to create each one the first time it's needed, so the brain doesn't start with empty folders.
 
 **Slugs** are lowercase letters, numbers, and hyphens only, such as `acme-corp` or `q4-launch`. Drop other characters: "O'Brien & Co." becomes `obrien-co`.
 
-**People file names** use the first name, lowercase (`maria.md`). If two people in the same folder share a first name, add the last initial to both (`sam-k.md`, `sam-r.md`). If you don't know the last initial, ask.
+**People file names** use the first name, lowercase (`maria.md`). If two people anywhere in the brain share a first name, add the last initial to both (`sam-k.md`, `sam-r.md`). If you don't know the last initial, ask.
 
 Seed every note with what the user told you. A brain that starts empty gets abandoned, so a note saying "Sam: designer at Acme, works with {{NAME}} on the website" is far better than a blank one.
 
@@ -180,7 +185,7 @@ Seed every note with what the user told you. A brain that starts empty gets aban
 After writing, tell the user these things in plain language. Keep each one to a line or two.
 
 1. **It's done.** List the folders you created in one line.
-2. **How to come back.** In the Claude desktop app, start a conversation with this same folder connected, and begin with: *"Read my brain, starting with CLAUDE.md, and tell me where we left off."*
+2. **How to come back.** A folder connected to one conversation doesn't carry over to new ones. Suggest making a project from this folder in the Claude desktop app (in Cowork, the option to add a project lets you choose a folder), so every conversation in that project has the brain connected. Menu names change, so help them look if they can't find it. Then, in a new conversation in that project, begin with: *"Read my brain, starting with CLAUDE.md, and tell me where we left off."*
 3. **Let Claude know about the brain everywhere (recommended, 2 minutes).** Claude can only read the brain in a conversation that has this folder connected. From the website or the phone app, that means a conversation started on this computer, with the desktop app still open here. Settings has a box for instructions that apply to every conversation, so a short note there means Claude always knows the brain exists and asks for it instead of guessing. Fill in Template K, show it to the user, and tell them where to paste it: **Settings → General → Instructions for Claude**. In older versions of the app that still have a separate Cowork mode, also paste it into **Settings → Cowork → Global instructions**. Menu names change, so if the user can't find it, help them look. You can't change their settings yourself.
 4. **Phrases that work:**
    - "Log this" saves the current thinking to the right place.
@@ -242,9 +247,11 @@ This table is the official layout of the brain. Keep it up to date (see "How thi
 | `archive/` | core | Old material. Nothing is ever deleted, only moved here. Created the first time something is archived. |
 
 **Shapes:**
-- **separate**: one folder per item (`<area>/<item>/overview.md`), with that item's people in `<area>/<item>/people/`. Items never mix; see "Kept separate."
-- **list**: one note per item (`<area>/<item>.md`), each with a status line, plus `<area>/README.md`.
-- **ongoing**: a single folder (`<area>/README.md`) where notes on that part of life collect over time.
+- **separate**: one folder per item, with a main note named after the item (`<area>/<item>/<item>.md`) and that item's people in `<area>/<item>/people/`. Items never mix; see "Kept separate."
+- **list**: one note per item (`<area>/<item>.md`), each with a status line, plus a main note named after the area (`<area>/<area>.md`).
+- **ongoing**: a single folder with a main note named after the area (`<area>/<area>.md`), where notes on that part of life collect over time.
+
+Main notes are named after their folder so links like `[[acme]]` work. Keep every note's name unique across the brain. Create a `people/` folder inside an area or item the first time a person belongs there.
 
 ## What to help with
 
@@ -287,7 +294,7 @@ The layout should change as my life and work change. Suggest a change when you n
 How to suggest a change:
 - Say it in one or two lines: what you'd add, move, rename, or archive, and why.
 - Wait for my OK, whatever the "How careful to be" setting says.
-- Use one of the three shapes above. Keep the top level to about 8 folders: combine before adding.
+- Use one of the three shapes above. Keep areas to about 10, not counting `daily/`, `people/`, `decisions/`, and `archive/`. Combine before adding.
 - After the change, update the folder map and add a line to "Structure changes" below.
 
 **Monthly check:** in the first session of each month, if the last line in "Structure changes" is more than a month old, offer once: "Want a quick check on how your folders are working?" If I say no, don't ask again that month. If I say yes, do the "Review my folders" check.
@@ -348,11 +355,11 @@ This file is the brain's rulebook. When I correct how you do something, propose 
 - `{{WRITING_FOLDER_ROW}}`: `` | `writing/` | ongoing | Ideas and drafts for posts and articles | ``. Only if Q5 includes (d).
 - `{{WIKI_FOLDER_ROW}}`: `` | `wiki/` | ongoing | What I've learned on a topic, one page per concept, with sources | ``. Only if Q5 includes (e).
 - `{{ABOUT_ME}}`: the user's Q1 answer, in one or two sentences written in the first person.
-- `{{HELP_FOCUS}}`: one bullet per choice from Q5, written as instructions:
+- `{{HELP_FOCUS}}`: one bullet per choice from Q5, written as instructions. If the user stressed something specific, add it as the first bullet, in their words.
   - (a) "When I describe a meeting or conversation, save a short summary (who, what was decided, follow-ups) to the note for that area, item, or person."
   - (b) "Track tasks as `- [ ]` checkboxes in daily notes. When I plan my day, bring up unfinished tasks from the last few days."
   - (c) "When I'm weighing a decision, help me think it through, then offer to save it to `decisions/`."
-  - (d) "When you notice an idea worth writing about, suggest adding a one-liner to `writing/ideas.md`."
+  - (d) "When you notice an idea worth writing about, suggest adding a one-liner to `writing/ideas.md`. Learn how I write: keep notes on my voice in `writing/voice.md` (create it the first time), and update it when I correct your drafts or tell you what I like."
   - (e) "When I learn something worth keeping, offer to add it to a page in `wiki/`, with sources."
   - (f) "Keep track of appointments, plans, bills, and household tasks in daily notes and the right area. When I plan my day, bring up anything due in the next week."
 - `{{CAUTION_LEVEL}}`:
@@ -371,7 +378,7 @@ This file is the brain's rulebook. When I correct how you do something, propose 
 - `{{PRIVACY_SECTION}}` (only if any area is private). List the private folders:
   ```
   ## Private areas
-  Private: <private folders, such as `personal/`>.
+  Private: <private folders, such as `personal/`>, including the people notes inside them.
   - Don't bring these up unless I'm asking about them.
   - Never include their contents in work notes, summaries, or drafts.
   ```
@@ -416,7 +423,7 @@ Quick captures go here as one-liners. Sort them out every week or so by saying "
 ## Captures
 ~~~~
 
-### Template E: `people/<first-name>.md` or `<area>/<item-slug>/people/<first-name>.md`
+### Template E: a person note, in `people/`, a separate item's `people/`, or a private area's `people/`
 
 ~~~~markdown
 # {{PERSON_NAME}}
@@ -429,7 +436,7 @@ Quick captures go here as one-liners. Sort them out every week or so by saying "
 
 Link the area or item with `[[slug]]` if the user mentioned one; otherwise delete the "Connected to" line. Record only what the user said. Never add health, family, or other sensitive details. A note in the shared `people/` folder never mentions anything from a separate area.
 
-### Template F: `<area>/README.md` (list and ongoing shapes)
+### Template F: `<area>/<area>.md` (list and ongoing shapes)
 
 ~~~~markdown
 # {{AREA_NAME}}
@@ -463,7 +470,7 @@ Link the area or item with `[[slug]]` if the user mentioned one; otherwise delet
 
 `{{STATUS}}`: what the user said about where it stands, in a few words ("applied, waiting to hear," "in progress"). If they didn't say, use "active."
 
-### Template H: `<area>/<item-slug>/overview.md` (separate shape)
+### Template H: `<area>/<item-slug>/<item-slug>.md` (separate shape)
 
 ~~~~markdown
 # {{ITEM_NAME}}
@@ -487,7 +494,7 @@ Link the area or item with `[[slug]]` if the user mentioned one; otherwise delet
 One line per idea: `- [ ] YYYY-MM-DD: <idea> | where it came from`
 ~~~~
 
-### Template J: `wiki/README.md`
+### Template J: `wiki/wiki.md`
 
 ~~~~markdown
 # Wiki

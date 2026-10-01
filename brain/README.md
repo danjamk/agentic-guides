@@ -51,7 +51,7 @@ Claude shows you the plan and waits for your OK before saving anything.
 
 ## Using your brain outside the desktop app
 
-- **On your computer:** start a conversation in the Claude desktop app with the brain folder connected.
+- **On your computer:** a folder you connect to one conversation doesn't carry over to the next. Make a project from your brain folder in the Claude desktop app instead, so every conversation in that project has the brain connected. Claude walks you through this at the end of setup.
 - **On your phone or the website:** Claude can reach the brain only in a conversation you started on your computer, and only while the desktop app is still open there. A brand-new conversation on your phone can't see it.
 - **Everywhere:** at the end of setup, Claude gives you a few lines to paste into Claude's settings, under "Instructions for Claude." Those lines apply to every conversation, so Claude always knows the brain exists and asks you to connect it instead of guessing.
 
