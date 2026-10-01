@@ -6,10 +6,13 @@ Conventions for writing a new guide. `brain/brain-installer.md` is the reference
 
 | Mode | How it works | Use when |
 |---|---|---|
-| **Dropped file** | The human downloads the guide and hands it to the agent. | The agent's sandbox can't reliably reach the web. This describes Cowork today. |
-| **Pointer prompt** | The human pastes a one-line prompt that has the agent fetch a public page and follow it. | Chat or browser-based setups where the agent can fetch a URL. |
+| **Pointer prompt** (default) | The human pastes a one-line prompt that has the agent read the guide from a link and follow it. | Most setups. The agent can usually open a public link. |
+| **Dropped file** (fallback) | The human downloads the guide and hands it to the agent. | The agent can't open the link, for example because web access is turned off for the account. |
 
-Write the guide so it works in dropped-file mode. A pointer prompt points at the same file.
+- Write the guide so it works either way. Both modes use the same file.
+- In the pointer prompt, link the raw file on a tag (`raw.githubusercontent.com/<owner>/<repo>/<guide>-vX.Y/<path>`), so the agent gets plain text from a fixed version.
+- Word the prompt as the human's own request ("Please read … and follow its instructions to …"). An agent may treat instructions it finds on a web page as content to summarize, unless the human clearly asked it to follow them.
+- Offer the dropped file in the folder README as the fallback, with a link to the file's page on the tag. Don't link the raw file for downloads.
 
 ## Structure
 
@@ -34,7 +37,7 @@ Every guide has these parts, in this order.
 - Put the version in the guide's header: `**Version:** <guide>-vX.Y (YYYY-MM-DD)`.
 - Write the version into whatever the guide produces, so the output records which version made it.
 - Release by tagging the repo `<guide>-vX.Y`. Bump the minor number for wording and template fixes. Bump the major number when the output's structure changes.
-- Keep a **Changelog** section at the end of the guide file itself, not in a separate file, because in dropped-file mode the agent only sees the guide. Newest first. Write each change for an agent upgrading something an older version produced:
+- Keep a **Changelog** section at the end of the guide file itself, not in a separate file, because the agent only reads the guide file. Newest first. Write each change for an agent upgrading something an older version produced:
 
   ```
   ### <guide>-vX.Y (YYYY-MM-DD)

@@ -6,11 +6,11 @@ Each guide names the platform it was written for. Other agents and platforms can
 
 ## How to use a guide
 
-1. Download the guide's `.md` file from its folder.
-2. Give it to Claude (drag it into the chat) and say "Run this."
+1. Open the guide's folder and copy the message it gives you.
+2. Paste it into Claude. Claude reads the guide from the link and starts working.
 3. Answer Claude's questions.
 
-Each guide's folder has a README with the exact steps for that guide.
+If Claude can't open the link, download the guide's `.md` file instead, drag it into the conversation, and say "Run this." Each guide's folder has a README with the exact steps for that guide.
 
 ## Guides
 

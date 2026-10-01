@@ -50,7 +50,7 @@ The brain has two parts:
 
 ### Step 1: Check the folder
 
-Look at the folder connected to this conversation. Ignore hidden system files (names starting with `.`, such as `.DS_Store`) and this installer file itself. They don't count when deciding whether the folder is empty.
+You may have received this installer as a file or by reading it from a link. Either way, look at the folder connected to this conversation. Ignore hidden system files (names starting with `.`, such as `.DS_Store`) and this installer file itself, if it's there. They don't count when deciding whether the folder is empty.
 
 - If it's **empty**, continue.
 - If it contains **files that look like a brain** (a `CLAUDE.md` or a `hot.md`), don't install. Look in `CLAUDE.md` for a line like "Installed with brain-vX.Y" or "Updated to brain-vX.Y."
@@ -58,6 +58,7 @@ Look at the folder connected to this conversation. Ignore hidden system files (n
   - Otherwise, tell the user a brain is already installed here, and ask whether they meant a different folder.
 - If it contains **other files**, ask whether to install into a new subfolder called `Brain` inside it. Only continue if the user says yes. If a `Brain` subfolder already exists, use `Brain-2` instead (or the next free number), and tell the user the name.
 - If **no folder is connected**, tell the user how to give you access to an empty folder, then continue once they have.
+- If **you can't reach folders on the user's computer at all** (for example, the user is on the Claude website or phone app), stop. Explain that the brain is a folder on their computer, so setup needs the Claude desktop app. Tell them to start a conversation there, connect an empty folder, and paste the same message or file again.
 
 #### Upgrading an existing brain
 
