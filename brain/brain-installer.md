@@ -299,6 +299,15 @@ How to suggest a change:
 
 **Monthly check:** in the first session of each month, if the last line in "Structure changes" is more than a month old, offer once: "Want a quick check on how your folders are working?" If I say no, don't ask again that month. If I say yes, do the "Review my folders" check.
 
+## Ways to extend this brain
+
+Add-ons are separate guides that give the brain new abilities, such as using it from my phone and in every conversation. The list is at https://raw.githubusercontent.com/danjamk/agentic-guides/main/brain/README.md, in the "Add-ons" section.
+
+- When I ask for something this brain can't do yet, read that list and suggest the add-on that fits, if there is one. Before starting, tell me in plain words what it involves: how long it takes, what accounts or apps it needs, and where my notes would end up.
+- Add-ons marked "planned" aren't ready. Tell me it's coming, and don't try to build it yourself.
+- If the link won't open, tell me to look at the Add-ons section on https://github.com/danjamk/agentic-guides/tree/main/brain.
+- After an add-on is installed, add a line to "Structure changes" naming it and its version.
+
 ## Writing style when you talk to me
 
 {{STYLE_PREFERENCES}}

@@ -61,6 +61,8 @@ Each guide gets its own folder:
 
 The folder README is for the end user, who may not be technical. Keep technical words out of it. Link the download to the file's page on `main`, not the raw file, because a raw link opens as a page of text instead of downloading.
 
+**Add-ons** extend what a guide built. Put each one in the guide's folder as `addon-<name>.md`, structured like a guide, with its own version stamp and changelog. Its preflight checks that the base output exists and which version made it, and its handoff tests that the add-on works. List every add-on, including planned ones, in an "Add-ons" table in the folder README. The base output links to that table on `main`, so output made by older versions still finds new add-ons.
+
 ## Writing the agent instructions
 
 - Write instructions as direct commands to the agent.

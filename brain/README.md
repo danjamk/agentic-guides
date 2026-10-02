@@ -61,6 +61,14 @@ Claude shows you the plan and waits for your OK before saving anything.
 
 As you use it, Claude notices when something keeps coming up with no place to go, or when a folder stops being used. It suggests a change and asks before making it. You can also say "Review my folders" at any time.
 
+## Add-ons
+
+Add-ons give your brain new abilities once you've used it for a while. Each one is a separate guide that Claude follows, the same way it followed the installer. You don't need to remember this list: when you ask Claude for something your brain can't do yet, it checks here and suggests what fits.
+
+| Add-on | What it adds | Effort | Status |
+|---|---|---|---|
+| Use your brain everywhere | Read and update your brain from your phone, the website, and any conversation, by keeping a copy in a free, private GitHub account | More technical. About 30–45 minutes, with Claude guiding and checking each step. | Planned |
+
 ## Privacy
 
 - Your notes are ordinary files in a folder on your computer. They aren't locked inside an app, and you can open, move, or back them up like any other files.
