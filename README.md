@@ -21,7 +21,8 @@ If Claude can't open the link, download the guide's `.md` file instead, drag it 
 ## Before you run a guide
 
 - **Read it first.** A guide is instructions your agent will follow on your computer. Skim it before you hand it over.
-- **Use a tagged version, not `main`.** `main` can change at any time. A tag is a fixed snapshot. Pick one from the [tags page](https://github.com/danjamk/agentic-guides/tags).
+- **`main` is always the latest released version.** Guide links point at `main`, so you get fixes without new links. Unfinished work happens on other branches.
+- **Want a fixed version?** Each release is also tagged. Pick one from the [tags page](https://github.com/danjamk/agentic-guides/tags) and use its link instead.
 
 ## Versioning
 

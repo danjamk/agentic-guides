@@ -40,14 +40,16 @@ Next time, Claude reads the notes and already knows the context.
 4. **Paste this message into the conversation:**
 
    ```
-   Please read the brain installer at https://raw.githubusercontent.com/danjamk/agentic-guides/brain-v1.0/brain/brain-installer.md and follow its instructions to set up my brain in this folder.
+   Please read the brain installer at
+   https://raw.githubusercontent.com/danjamk/agentic-guides/main/brain/brain-installer.md
+   and follow its instructions to set up my brain in this folder.
    ```
 
-5. **Answer the questions.** There are about 8. Short answers are fine. It takes around 10 minutes.
+5. **Answer the questions.** There are seven or eight. Short answers are fine. It takes around 10 minutes.
 
 Claude shows you the plan and waits for your OK before saving anything.
 
-**If Claude says it can't open the link,** download the installer instead. Open [this page](https://github.com/danjamk/agentic-guides/blob/brain-v1.0/brain/brain-installer.md) and click the download button (a downward arrow) near the top right. Drag the downloaded file into the conversation and type: **Run this installer.**
+**If Claude says it can't open the link,** download the installer instead. Open [this page](https://github.com/danjamk/agentic-guides/blob/main/brain/brain-installer.md) and click the download button (a downward arrow) near the top right. Drag the downloaded file into the conversation and type: **Run this installer.**
 
 ## Using your brain outside the desktop app
 

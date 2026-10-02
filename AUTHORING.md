@@ -10,9 +10,9 @@ Conventions for writing a new guide. `brain/brain-installer.md` is the reference
 | **Dropped file** (fallback) | The human downloads the guide and hands it to the agent. | The agent can't open the link, for example because web access is turned off for the account. |
 
 - Write the guide so it works either way. Both modes use the same file.
-- In the pointer prompt, link the raw file on a tag (`raw.githubusercontent.com/<owner>/<repo>/<guide>-vX.Y/<path>`), so the agent gets plain text from a fixed version.
+- In the pointer prompt, link the raw file on `main` (`raw.githubusercontent.com/<owner>/<repo>/main/<path>`), so the agent gets plain text and the link never changes. `main` is the release branch: merge to it only when a version is ready, and tag it. Put the link on its own line in the README's copy box, because GitHub doesn't wrap code blocks.
 - Word the prompt as the human's own request ("Please read … and follow its instructions to …"). An agent may treat instructions it finds on a web page as content to summarize, unless the human clearly asked it to follow them.
-- Offer the dropped file in the folder README as the fallback, with a link to the file's page on the tag. Don't link the raw file for downloads.
+- Offer the dropped file in the folder README as the fallback, with a link to the file's page on `main`. Don't link the raw file for downloads.
 
 ## Structure
 
@@ -59,7 +59,7 @@ Each guide gets its own folder:
 └── <guide>.md       # the guide itself
 ```
 
-The folder README is for the end user, who may not be technical. Keep technical words out of it. Link the download to the file's page on the tagged version, not the raw file, because a raw link opens as a page of text instead of downloading.
+The folder README is for the end user, who may not be technical. Keep technical words out of it. Link the download to the file's page on `main`, not the raw file, because a raw link opens as a page of text instead of downloading.
 
 ## Writing the agent instructions
 
