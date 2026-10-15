@@ -112,13 +112,16 @@ Also say this once, before the connector step: Claude's connector list includes 
    - GitHub may ask the user to turn on two-step sign-in, now or later. Help them do it. Tell them to keep the recovery codes in a password manager or on paper, never in the brain.
    - Ask for the username when they're done.
 
-3. **Private repository.** A repository is GitHub's word for a folder of files with a history of every change. Walk them through creating one at https://github.com/new:
-   - Owner: their username. Repository name: `brain`.
-   - Choose **Private**. This matters: a public repository can be read by anyone.
-   - Turn on **Add a README** (sometimes shown as "Add a README file"). An empty repository can't be written to through the connector.
-   - Click **Create repository**.
-   - If the name `brain` is taken because they already have one, ask whether it's an existing brain. If it is, use it and check it in step 6. If not, use `brain-2`.
-   - Ask them to confirm the page shows "Private" next to the name.
+3. **Private repository.** A repository is GitHub's word for a folder of files with a history of every change. Ask: "Do you already have a private repository you'd like to use for your brain, or should we make a new one?"
+   - If they have one, ask for its name. Ask them to open it on GitHub and confirm it shows "Private" next to the name. If it's public, suggest making a new private one, because anyone can read a public repository. If it's empty, have them add a README from the repository's page (GitHub offers a button or link for it), because an empty repository can't be written to through the connector. Then continue to step 4. Step 6 checks what's in it.
+   - If not, walk them through creating one at https://github.com/new:
+     - Owner: their username. Repository name: `brain`.
+     - Choose **Private**. This matters: a public repository can be read by anyone.
+     - Turn on **Add a README** (sometimes shown as "Add a README file"). An empty repository can't be written to through the connector.
+     - Click **Create repository**.
+     - If the name `brain` is taken because they already have one, ask whether it's an existing brain. If it is, use it and check it in step 6. If not, use `brain-2`.
+     - Ask them to confirm the page shows "Private" next to the name.
+   - Use this repository's name in steps 4 and 5, and in `{{REPO}}`.
 
 4. **Access token.** Explain in one line: "A token is a long password that lets Claude into this one repository and nothing else in your account." Then walk them through it:
    - Open https://github.com/settings/personal-access-tokens/new. Or: profile picture → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.

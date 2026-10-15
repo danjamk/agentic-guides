@@ -12,7 +12,7 @@ Markdown only. No code, no build, no CI. The guides are instructions for an agen
 |---|---|
 | `AUTHORING.md` | Conventions for writing guides. Read it before editing any guide. |
 | `brain/brain-installer.md` | The brain installer. The agent reads this file. |
-| `brain/README.md` | For the end user, who may not be technical. No technical words except in the Add-ons table. |
+| `brain/README.md` | For the end user, who may not be technical. Names the person will see on screen (GitHub, Obsidian, a Claude connector) are fine; explain each in a few words the first time. Other technical words (repository, token, branch) only in the Add-ons table. |
 | `brain/addon-*.md` | Add-on guides that extend a brain |
 
 ## Conventions

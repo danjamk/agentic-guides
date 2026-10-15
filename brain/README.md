@@ -89,7 +89,7 @@ Claude never needs your GitHub password, and you never paste the key into the co
 - A folder you connect to one conversation doesn't carry over to the next. Make a project from your brain folder in the Claude desktop app instead, so every conversation in that project has the brain connected. Claude walks you through this at the end of setup.
 - On your phone or the website, Claude can reach the brain only in a conversation you started on your computer, and only while the desktop app is still open there. A brand-new conversation on your phone can't see it.
 
-**If your brain is online:** any new conversation on any device can use it, as long as the GitHub connector is turned on.
+**If your brain is online:** any new conversation on any device can use it, as long as the GitHub connector (the link between Claude and GitHub that you set up with Claude) is turned on.
 
 **Either way:** at the end of setup, Claude gives you a few lines to paste into Claude's settings, under "Instructions for Claude." Those lines apply to every conversation, so Claude always knows the brain exists and reads it, or asks you to connect it, instead of guessing.
 
@@ -109,7 +109,7 @@ Add-ons give your brain new abilities once you've used it for a while. Each one 
 ## Privacy
 
 - **On your computer:** your notes are ordinary files in a folder. They aren't locked inside an app, and you can open, move, or back them up like any other files.
-- **Online:** your notes are in a private GitHub space that only you can see, unless you invite someone. GitHub can access it for security, support, or legal reasons. GitHub says it doesn't train AI on private repositories. GitHub keeps every version of every note, so deleting a note doesn't erase its history. The key you give Claude reaches only that one space.
+- **Online:** your notes are in a private GitHub space that only you can see, unless you invite someone. GitHub can access it for security, support, or legal reasons. GitHub says it doesn't train AI on private spaces like this one. GitHub keeps every version of every note, so deleting a note doesn't erase its history. The key you give Claude reaches only that one space.
 - When you use the brain in a conversation, Claude reads the parts it needs, the same way it reads anything else you share with Claude.
 - Never put passwords, account numbers, or ID numbers in your brain.
 
