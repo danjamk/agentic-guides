@@ -1,10 +1,10 @@
 # Brain Installer
 
-Claude starts every conversation knowing nothing about you. A "brain" fixes that. It's a folder of plain notes on your computer about your work, your life, the people in it, and what you were last doing. Claude reads it at the start of a conversation and adds to it as you go. This installer sets one up for you by asking a few questions.
+Claude starts every conversation knowing nothing about you. A "brain" fixes that. It's a set of plain notes about your work, your life, the people in it, and what you were last doing. Claude reads it at the start of a conversation and adds to it as you go. This installer sets one up for you by asking a few questions.
 
 ## What this sets up
 
-The installer creates a folder of ordinary text files. Every brain starts with:
+The installer creates a folder of ordinary text files, either on your computer or online in a private GitHub account (see "Choose where your brain lives" below). Every brain starts with:
 
 - **A main instruction file** that tells Claude who you are, how you like to work, and how the brain is organized. You can edit it, and Claude suggests changes to it when you correct something.
 - **A "where we left off" note**, so the next conversation picks up where the last one ended.
@@ -26,13 +26,21 @@ You talk to Claude normally. A few phrases do specific things:
 
 Next time, Claude reads the notes and already knows the context.
 
-## What you need
+## Choose where your brain lives
 
-- The Claude desktop app, on a paid plan. This guide is written for a Mac, as of October 2026. It should work on Windows too.
-- An empty folder, such as `Documents/Brain`.
-- Optional: Obsidian, a free app for browsing your notes. You don't need it to use the brain.
+| | On your computer | Online, in GitHub |
+|---|---|---|
+| Where your notes are | A folder on your computer | A private space in a free GitHub account. GitHub is a website for storing files, used mostly by software developers. |
+| Where you can use it | The Claude desktop app on that computer | Any Claude conversation: the website, the phone app, or the desktop app |
+| Claude plan | Any paid plan | Pro or Max. Work plans (Team, Enterprise) aren't supported. |
+| Setup time | About 10 minutes | About 30 minutes, once. Claude guides you through each step. |
+| Good if | You want your notes as files you can see and back up yourself | You'd rather not give Claude access to your computer, or you want the brain on your phone |
 
-## Steps
+This guide is written for Claude on a Mac, as of October 2026. It should work on Windows too.
+
+## Steps: on your computer
+
+You need the Claude desktop app and an empty folder. Optional: Obsidian, a free app for browsing your notes.
 
 1. **Make an empty folder**, such as `Documents/Brain`.
 2. **Start a new conversation in the Claude desktop app.** If your app has separate Chat and Cowork options, choose Cowork. The website and phone app won't work for setup, because they can't reach folders on your computer.
@@ -51,11 +59,39 @@ Claude shows you the plan and waits for your OK before saving anything.
 
 **If Claude says it can't open the link,** download the installer instead. Open [this page](https://github.com/danjamk/agentic-guides/blob/main/brain/brain-installer.md) and click the download button (a downward arrow) near the top right. Drag the downloaded file into the conversation and type: **Run this installer.**
 
-## Using your brain outside the desktop app
+## Steps: online, in GitHub
 
-- **On your computer:** a folder you connect to one conversation doesn't carry over to the next. Make a project from your brain folder in the Claude desktop app instead, so every conversation in that project has the brain connected. Claude walks you through this at the end of setup.
-- **On your phone or the website:** Claude can reach the brain only in a conversation you started on your computer, and only while the desktop app is still open there. A brand-new conversation on your phone can't see it.
-- **Everywhere:** at the end of setup, Claude gives you a few lines to paste into Claude's settings, under "Instructions for Claude." Those lines apply to every conversation, so Claude always knows the brain exists and asks you to connect it instead of guessing.
+You need a Claude Pro or Max plan and a computer for setup. You don't need a GitHub account yet; Claude helps you make one.
+
+1. **On a computer, open Claude in your web browser** at claude.ai and start a new conversation. You'll use GitHub's website in another tab.
+2. **Paste this message into the conversation:**
+
+   ```
+   Please read the brain installer at
+   https://raw.githubusercontent.com/danjamk/agentic-guides/main/brain/brain-installer.md
+   and follow its instructions to set up my brain online, in GitHub.
+   ```
+
+3. **Follow Claude's setup steps.** Claude checks what you already have, then helps with the rest:
+   - a free GitHub account
+   - a private space for your notes
+   - a key that lets Claude into that one space and nothing else
+   - connecting it to Claude
+4. **Answer the questions.** Same as the local setup: seven or eight questions, about 10 minutes.
+
+Claude never needs your GitHub password, and you never paste the key into the conversation. It goes into Claude's settings.
+
+**If Claude says it can't open the link,** download the installer the same way as above, drag it into the conversation, and type: **Run this installer and keep my brain online, in GitHub.**
+
+## Using your brain on other devices
+
+**If your brain is on your computer:**
+- A folder you connect to one conversation doesn't carry over to the next. Make a project from your brain folder in the Claude desktop app instead, so every conversation in that project has the brain connected. Claude walks you through this at the end of setup.
+- On your phone or the website, Claude can reach the brain only in a conversation you started on your computer, and only while the desktop app is still open there. A brand-new conversation on your phone can't see it.
+
+**If your brain is online:** any new conversation on any device can use it, as long as the GitHub connector is turned on.
+
+**Either way:** at the end of setup, Claude gives you a few lines to paste into Claude's settings, under "Instructions for Claude." Those lines apply to every conversation, so Claude always knows the brain exists and reads it, or asks you to connect it, instead of guessing.
 
 ## It changes with you
 
@@ -67,11 +103,13 @@ Add-ons give your brain new abilities once you've used it for a while. Each one 
 
 | Add-on | What it adds | Effort | Status |
 |---|---|---|---|
-| Use your brain everywhere | Read and update your brain from your phone, the website, and any conversation, by keeping a copy in a free, private GitHub account | More technical. About 30–45 minutes, with Claude guiding and checking each step. | Planned |
+| Move your brain online | Move a brain from your computer to a free, private GitHub account, so you can use it from your phone, the website, and any conversation | About 30 minutes, with Claude guiding and checking each step | Planned |
+| Browse an online brain in Obsidian | A read-only copy of an online brain on your computer, so you can browse it in Obsidian | More technical. Needs the Claude desktop app. | Planned |
 
 ## Privacy
 
-- Your notes are ordinary files in a folder on your computer. They aren't locked inside an app, and you can open, move, or back them up like any other files.
+- **On your computer:** your notes are ordinary files in a folder. They aren't locked inside an app, and you can open, move, or back them up like any other files.
+- **Online:** your notes are in a private GitHub space that only you can see, unless you invite someone. GitHub can access it for security, support, or legal reasons. GitHub says it doesn't train AI on private repositories. GitHub keeps every version of every note, so deleting a note doesn't erase its history. The key you give Claude reaches only that one space.
 - When you use the brain in a conversation, Claude reads the parts it needs, the same way it reads anything else you share with Claude.
 - Never put passwords, account numbers, or ID numbers in your brain.
 

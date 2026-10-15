@@ -16,7 +16,7 @@ If Claude can't open the link, download the guide's `.md` file instead, drag it 
 
 | Guide | What it sets up | Who it's for | Runs in | Folder |
 |---|---|---|---|---|
-| Brain installer | A personal "brain": a folder of plain notes Claude reads each session to remember your projects, people, and where you left off | Non-technical people, for work, personal life, or both | Claude desktop app (Mac), with a folder connected | [`brain/`](brain/) |
+| Brain installer | A personal "brain": plain notes, on your computer or in a private GitHub account, that Claude reads each session to remember your projects, people, and where you left off | Non-technical people, for work, personal life, or both | Claude desktop app (Mac) with a folder, or any Claude conversation with a free GitHub account | [`brain/`](brain/) |
 
 ## Before you run a guide
 
