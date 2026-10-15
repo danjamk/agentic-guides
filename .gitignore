@@ -1,4 +1,5 @@
 .DS_Store
+.idea/
 CLAUDE.local.md
 COMMIT_MESSAGE.md
 PR_COMMENT.md
