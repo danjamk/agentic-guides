@@ -1,1 +1,7 @@
 .DS_Store
+CLAUDE.local.md
+COMMIT_MESSAGE.md
+PR_COMMENT.md
+.env.local
+.claude/settings.local.json
+.claude/skills/*
