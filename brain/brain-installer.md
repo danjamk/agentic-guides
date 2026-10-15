@@ -6,19 +6,28 @@
 
 ## For the person reading this
 
-This file sets up a personal "brain" for you. The brain is a folder of plain notes that Claude reads at the start of every session, so it remembers your projects, your people, and what you were last working on. Claude asks about your life and work, suggests a set of folders that fits, and builds it once you agree. The folders change over time as your life does.
+This file sets up a personal "brain" for you. The brain is a set of plain notes that Claude reads at the start of every session, so it remembers your projects, your people, and what you were last working on. Claude asks about your life and work, suggests a set of folders that fits, and builds it once you agree. The folders change over time as your life does.
 
-How to use it:
+Your brain can live in one of two places. Claude asks which one you want.
+
+- **In a folder on your computer.** Your notes are ordinary files. Claude reaches them from the Claude desktop app on that computer. Setup takes about 10 minutes.
+- **Online, in a free private GitHub account.** Claude reaches your notes from any conversation, on your phone, the website, or any computer. Setup takes about 30 minutes, once, and Claude guides you through each step.
+
+To keep it on your computer:
 
 1. Make an empty folder somewhere easy to find, such as `Documents/Brain`.
 2. Open the Claude desktop app and start a new conversation. If your app has separate **Chat** and **Cowork** options, choose **Cowork**.
 3. Give Claude access to the empty folder. Claude asks for your permission the first time.
 4. Drag this file into the conversation and type: **Run this installer.**
-5. Answer Claude's questions. It takes about 10 minutes.
+5. Answer Claude's questions.
 
-You don't need GitHub, a terminal, or any technical setup. Your notes are saved as ordinary files in that folder on your computer.
+To keep it online:
 
-This guide is written for the Claude desktop app on a Mac, as of October 2026. Claude's apps change often. On Windows, in a newer version of the app, or with a different AI assistant, it should still work, but the assistant may need to adjust some steps and will tell you when it does.
+1. On a computer, open Claude in your web browser (claude.ai) and start a new conversation. You'll also use GitHub's website in another tab.
+2. Drag this file into the conversation and type: **Run this installer and keep my brain online, in GitHub.**
+3. Follow Claude's steps, then answer its questions.
+
+This guide is written for Claude on a Mac, as of October 2026. Claude's apps change often. On Windows, in a newer version of the app, or with a different AI assistant, it should still work, but the assistant may need to adjust some steps and will tell you when it does.
 
 ---
 
@@ -29,7 +38,11 @@ You are installing a personal knowledge system ("brain") for a non-technical per
 ### How to use these instructions
 
 - **Read this whole file before you start.** If you received it from a link and only got a summary or part of it, don't install from that. Get the full text another way (for example, download the raw file), or ask the user to download it and drag it into the conversation. If the link doesn't open at all, don't ask the user technical questions about versions, branches, or URLs. Ask them to use the download option on the installer's page instead.
-- **They're written for Claude in the desktop app on a Mac, as of October 2026,** with a local folder connected to the conversation. Anthropic is merging Cowork into regular conversations, so the user may or may not see a separate Cowork mode. If you're a different assistant, or running somewhere else (Windows, a web or phone chat, a coding tool), adapt the steps to what you can do there: how you reach the folder, how you save files, which menus you mention, and which instructions file your platform reads at the start of a session. Tell the user in one line what you changed and why. If you can't reach a folder on the user's computer at all, say so and stop rather than pretending to save files.
+- **They're written for Claude on a Mac, as of October 2026.** The brain is stored in one of two places, and Step 1 picks which:
+  - **Local:** a folder on the user's computer, connected to a conversation in the Claude desktop app. Anthropic is merging Cowork into regular conversations, so the user may or may not see a separate Cowork mode.
+  - **GitHub:** a private repository in the user's GitHub account, reached through GitHub's connector in Claude. This works in any conversation, on the website, the phone app, or the desktop app.
+
+  In the rest of this file, "the folder" means the local folder or the GitHub repository, whichever the user chose, and "save a file" means writing it there. If you're a different assistant, or running somewhere else (Windows, a coding tool), adapt the steps to what you can do there: how you reach the storage, how you save files, which menus you mention, and which instructions file your platform reads at the start of a session. Tell the user in one line what you changed and why. Never pretend to save files you can't reach.
 - **Adapt to the person.** The interview and templates are a starting point, not a script. If you already know things about the user from memory, earlier conversations, or files they've shared, use them. Skip questions you can already answer, and confirm what you know instead of asking again ("I have you down as a freelance designer with two clients. Still right?"). Reword questions, change their order, or add a follow-up when it helps. The goal is a brain that fits this person.
 - **The rules in the next section don't change.** Adapt everything else.
 
@@ -49,8 +62,25 @@ The brain has two parts:
 - **Never save passwords, account numbers, or ID numbers**, even if the user offers them. Leave them out and say why in one line.
 - **Don't create test files** to check whether you can write to the folder. The first real file is the test. You may not be allowed to delete a test file afterward.
 - **If saving a file fails,** stop. Tell the user in plain words which files were created and which weren't. Don't retry by deleting or overwriting anything.
+- **Never ask for, repeat, or save a GitHub access token.** It goes into Claude's connector settings, never into the conversation. If the user pastes one anyway, don't repeat it or use it. Tell them to delete that token on GitHub and make a new one, because the old one is now in the conversation history.
 
-### Step 1: Check the folder
+### Step 1: Choose where the brain lives, and check it
+
+First decide between the local folder and GitHub. Don't ask if the answer is already clear:
+
+- The user's message says it ("in this folder" means local; "online," "in GitHub," or "in a GitHub repository" means GitHub).
+- A folder is connected to this conversation and the user didn't mention GitHub: local.
+- This conversation already has a GitHub connector that can write files (it has tools such as `push_files` or `create_or_update_file`): ask whether they want to use it for the brain.
+
+Otherwise, ask:
+
+> Where should your brain live?
+> - (a) **In a folder on this computer.** Your notes are ordinary files you can open and back up. I reach them from the Claude desktop app on this computer. About 10 minutes to set up.
+> - (b) **Online, in a free private GitHub account.** I reach your notes from any conversation, on your phone, the website, or any computer. About 30 minutes to set up, once, and I'll guide you through each step.
+
+If the user is on the website or the phone app, where you can't reach a folder on their computer, say so in the question: (a) means starting again in the desktop app. Then follow Step 1a or Step 1b.
+
+#### Step 1a: Check the local folder
 
 You may have received this installer as a file or by reading it from a link. Either way, look at the folder connected to this conversation. Ignore hidden system files (names starting with `.`, such as `.DS_Store`), any folder the app creates for its own output (such as `Claude outputs`), and this installer file itself, if it's there. They don't count when deciding whether the folder is empty.
 
@@ -60,7 +90,66 @@ You may have received this installer as a file or by reading it from a link. Eit
   - Otherwise, tell the user a brain is already installed here, and ask whether they meant a different folder.
 - If it contains **other files**, ask whether to install into a new subfolder called `Brain` inside it. Only continue if the user says yes. If a `Brain` subfolder already exists, use `Brain-2` instead (or the next free number), and tell the user the name.
 - If **no folder is connected**, tell the user how to give you access to an empty folder, then continue once they have.
-- If **you can't reach folders on the user's computer at all** (for example, the user is on the Claude website or phone app), stop. Explain that the brain is a folder on their computer, so setup needs the Claude desktop app. Tell them to start a conversation there, connect an empty folder, and paste the same message or file again.
+- If **you can't reach folders on the user's computer at all** (for example, the user is on the Claude website or phone app), say so. Offer the GitHub path (Step 1b), or explain that a local brain needs the Claude desktop app: start a conversation there, connect an empty folder, and paste the same message or file again.
+
+#### Step 1b: Set up GitHub
+
+The user needs five things: a Claude plan that allows this, a GitHub account, a private repository, an access token, and the connector in Claude. Some may already be done. Work through them in order. For each one, ask or check whether it's done, help with what isn't, confirm it worked, and then move on. If the user comes back after stopping partway, start at the first one that isn't done.
+
+Open with one line: "I'll walk you through five short setup steps. Some may already be done. Keep GitHub's website open in another tab." You can't see the user's screen, and GitHub's and Claude's menus change. Describe what to look for, and if the user can't find something, help them look.
+
+Also say this once, before the connector step: Claude's connector list includes one called "GitHub Integration." Don't use it. It can only read files, so Claude couldn't save notes through it.
+
+1. **Claude plan.** Ask: "Which Claude plan are you on: Free, Pro, Max, or a work plan such as Team or Enterprise?"
+   - Pro or Max: continue.
+   - Free: this setup hasn't been tested on Free, and Free allows only one custom connector. Suggest upgrading to Pro or using the local path.
+   - Team or Enterprise: only the organization's owners can add this kind of connector. Suggest the local path, or a personal Pro account.
+
+2. **GitHub account.** Ask: "Do you have a GitHub account?"
+   - If yes, ask for the username and continue.
+   - If no, walk them through signing up at https://github.com/signup: an email address, a password, and a username. The username appears in web addresses, so a plain one is best. GitHub sends a code to the email address to confirm it. Choose the free plan if asked.
+   - If GitHub shows "Access is temporarily restricted," it suspects a bot. Suggest a normal browser window instead of a private one, turning off any VPN or iCloud Private Relay, using home Wi-Fi instead of a phone hotspot, or waiting an hour and trying again.
+   - GitHub may ask the user to turn on two-step sign-in, now or later. Help them do it. Tell them to keep the recovery codes in a password manager or on paper, never in the brain.
+   - Ask for the username when they're done.
+
+3. **Private repository.** A repository is GitHub's word for a folder of files with a history of every change. Walk them through creating one at https://github.com/new:
+   - Owner: their username. Repository name: `brain`.
+   - Choose **Private**. This matters: a public repository can be read by anyone.
+   - Turn on **Add a README** (sometimes shown as "Add a README file"). An empty repository can't be written to through the connector.
+   - Click **Create repository**.
+   - If the name `brain` is taken because they already have one, ask whether it's an existing brain. If it is, use it and check it in step 6. If not, use `brain-2`.
+   - Ask them to confirm the page shows "Private" next to the name.
+
+4. **Access token.** Explain in one line: "A token is a long password that lets Claude into this one repository and nothing else in your account." Then walk them through it:
+   - Open https://github.com/settings/personal-access-tokens/new. Or: profile picture → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
+   - Token name: `Claude brain`. Resource owner: their username.
+   - Expiration: the longest option offered. Ask them to tell you the date it shows; you'll save it in CLAUDE.md so you can remind them before it runs out.
+   - Repository access: **Only select repositories**, then pick the brain repository.
+   - Permissions: **Add permissions** → **Contents** → **Read and write**. GitHub adds "Metadata: read-only" by itself. Leave everything else off.
+   - Click **Generate token**. GitHub may ask for their password or a sign-in code.
+   - Copy the token. It starts with `github_pat_` and is shown only once, so keep that tab open until step 5 is done.
+   - Say: "Don't paste the token here. It goes into Claude's settings in the next step."
+
+5. **Connector.** Walk them through adding it in Claude: **Customize → Connectors → + (Add) → Add custom connector.**
+   - Name: `GitHub brain`.
+   - URL: `https://api.githubcopilot.com/mcp/x/repos`
+   - Sign-in: **No sign in** (or the option that doesn't use OAuth).
+   - **Request headers:** add a header named `Authorization`, with the value `Bearer `, a space, then the token.
+   - Click **Add**.
+   - Then open the connector's tool settings and set these to **Blocked**: delete repository, create repository, and fork repository. The brain never needs them.
+   - If there's no "Request headers" option, stop. Tell the user this path isn't available on their account right now, and offer the local path instead.
+   - The connector needs to be turned on in the conversation, usually from the **+** menu. If you still can't see GitHub tools after that, ask the user to start a new conversation and paste the same message or file. You'll pick up at step 6.
+
+6. **Check it works.** Read `README.md` from the repository through the connector.
+   - **It works:** say so in one line. If you can see whether the repository is private, confirm that too. Then check what's in the repository:
+     - Only `README.md` (and maybe `.gitignore` or `LICENSE`): continue to the interview.
+     - **Files that look like a brain** (`CLAUDE.md` or `hot.md`): handle it as Step 1a does for a folder with a brain, including the version check and upgrade offer.
+     - **Other files:** ask whether this is the right repository. Suggest creating a new one named `brain` for the brain.
+   - **It doesn't work:** find which step broke. If GitHub says the request isn't authorized, the token is wrong or wasn't pasted with `Bearer ` and a space in front, so delete the connector and add it again with the token (connectors can't be edited). If GitHub says the repository isn't found, check the username and repository name, and check that the token was given access to this repository. If you don't have GitHub tools at all, the connector isn't turned on in this conversation.
+
+Don't create a test file. The first real file you save in Step 5 is the test.
+
+If you skipped step 4 because the connector already worked, you don't know when the token expires. Ask the user. They can find the date on GitHub's token page (https://github.com/settings/personal-access-tokens). If they can't find it, or the token has no expiry date, leave the date out of CLAUDE.md as the fill rule for `{{STORAGE_SECTION}}` says.
 
 #### Upgrading an existing brain
 
@@ -73,7 +162,7 @@ Use this only when Step 1 found a brain made by an older version, and the user w
 5. Merge each change into what's there. The user has probably edited their files, and their edits win: add or adjust lines, never replace a whole file or section. If a change conflicts with something they wrote, show both and ask.
 6. In `CLAUDE.md`, add "Updated to brain-vX.Y on YYYY-MM-DD" under the "Installed with" line. If this installer's source link (in Template A's "Installed with" line) differs from the one in the brain, update the brain's link to match. Add a line to "Structure changes" listing what changed.
 
-All the rules for the whole install still apply.
+All the rules for the whole install still apply. On a GitHub brain, read and save through the connector, and save all the approved changes together in one change if the connector can (`push_files`).
 
 ### Step 2: Interview
 
@@ -149,7 +238,7 @@ Show the user the layout you designed, in plain language. Keep it under about 15
 >
 > We can add a folder for your hobby later if it keeps coming up. I'll ask before saving anything bigger than routine notes. Does this look right, or would you like to rename, merge, or drop anything?
 
-The last line about saving should match the user's Q6 answer, not the example. Wait for a yes. If the user wants changes, make them and show the layout again.
+The last line about saving should match the user's Q6 answer, not the example. On the GitHub path, add a line saying everything goes into their private GitHub repository in one step. Wait for a yes. If the user wants changes, make them and show the layout again.
 
 ### Step 5: Build the brain
 
@@ -180,13 +269,20 @@ Don't create `decisions/` or `archive/` now. CLAUDE.md tells Claude to create ea
 
 Seed every note with what the user told you. A brain that starts empty gets abandoned, so a note saying "Sam: designer at Acme, works with {{NAME}} on the website" is far better than a blank one.
 
+**On the GitHub path:**
+- Save every file in one change with `push_files`, to the repository's main branch, with the message "Set up brain." If that tool isn't available, save the files one at a time with `create_or_update_file`.
+- Leave the existing `README.md` as it is.
+- GitHub doesn't keep empty folders, which matches the rule above: a folder appears when its first file is saved.
+
 ### Step 6: Hand off
 
 After writing, tell the user these things in plain language. Keep each one to a line or two.
 
 1. **It's done.** List the folders you created in one line.
-2. **How to come back.** A folder connected to one conversation doesn't carry over to new ones. Suggest making a project from this folder in the Claude desktop app (in Cowork, the option to add a project lets you choose a folder), so every conversation in that project has the brain connected. Menu names change, so help them look if they can't find it. Then, in a new conversation in that project, begin with: *"Read my brain, starting with CLAUDE.md, and tell me where we left off."*
-3. **Let Claude know about the brain everywhere (recommended, 2 minutes).** Claude can only read the brain in a conversation that has this folder connected. From the website or the phone app, that means a conversation started on this computer, with the desktop app still open here. Settings has a box for instructions that apply to every conversation, so a short note there means Claude always knows the brain exists and asks for it instead of guessing. Fill in Template K, show it to the user, and tell them where to paste it: **Settings → General → Instructions for Claude**. In older versions of the app that still have a separate Cowork mode, also paste it into **Settings → Cowork → Global instructions**. Menu names change, so if the user can't find it, help them look. You can't change their settings yourself.
+2. **How to come back.**
+   - **Local:** a folder connected to one conversation doesn't carry over to new ones. Suggest making a project from this folder in the Claude desktop app (in Cowork, the option to add a project lets you choose a folder), so every conversation in that project has the brain connected. Menu names change, so help them look if they can't find it. Then, in a new conversation in that project, begin with: *"Read my brain, starting with CLAUDE.md, and tell me where we left off."*
+   - **GitHub:** start any new conversation, on any device, check that the GitHub brain connector is on, and begin with: *"Read my brain, starting with CLAUDE.md, and tell me where we left off."*
+3. **Let Claude know about the brain everywhere (recommended, 2 minutes).** Settings has a box for instructions that apply to every conversation, so a short note there means Claude always knows the brain exists and reads it or asks for it instead of guessing. Local: Claude can only read the brain in a conversation that has this folder connected; from the website or the phone app, that means a conversation started on this computer, with the desktop app still open here. GitHub: this note is what makes Claude read the brain in every new conversation. Fill in Template K (the version for their path), show it to the user, and tell them where to paste it: **Settings → General → Instructions for Claude**. In older versions of the app that still have a separate Cowork mode, also paste it into **Settings → Cowork → Global instructions**. Menu names change, so if the user can't find it, help them look. You can't change their settings yourself.
 4. **Phrases that work:**
    - "Log this" saves the current thinking to the right place.
    - "Capture for later" adds a one-liner to the inbox.
@@ -195,10 +291,13 @@ After writing, tell the user these things in plain language. Keep each one to a 
    - "Wrap up" saves where we left off.
    - "Review my folders" checks whether the layout still fits and suggests changes.
 5. **It grows with you.** When something keeps coming up with no home, or a folder stops being used, I'll suggest a change and ask before making it.
-6. **Optional: install Obsidian** (free, at obsidian.md) to browse and read your brain like an app. Open Obsidian, choose **Open folder as vault**, and pick this folder. It isn't required, because Claude can read the folder without it.
-7. **Backup:** the brain is ordinary files, so whatever backs up your Documents folder also backs up the brain. If nothing does, set up backup before you rely on it.
-8. **Don't store passwords, account numbers, or ID numbers in the brain.**
-9. **Want to learn more?** The installer's page has a reading list on giving AI good personal context: https://github.com/danjamk/agentic-guides/tree/main/brain#learn-more. Only mention this if the user seems interested.
+6. **Optional, local only: install Obsidian** (free, at obsidian.md) to browse and read your brain like an app. Open Obsidian, choose **Open folder as vault**, and pick this folder. It isn't required, because Claude can read the folder without it. On the GitHub path, the user can read their notes on github.com; skip this item.
+7. **Backup.**
+   - **Local:** the brain is ordinary files, so whatever backs up your Documents folder also backs up the brain. If nothing does, set up backup before you rely on it.
+   - **GitHub:** GitHub keeps every version of every note, so an earlier version can be recovered. That also means deleting a note doesn't erase its history.
+8. **GitHub only: the token expires** on the date the user gave you in Step 1b. You'll remind them two weeks before and walk them through making a new one.
+9. **Don't store passwords, account numbers, or ID numbers in the brain.**
+10. **Want to learn more?** The installer's page has a reading list on giving AI good personal context: https://github.com/danjamk/agentic-guides/tree/main/brain#learn-more. Only mention this if the user seems interested.
 
 Then ask the user to try one thing now: *"Tell me something from today you want to remember."* File the answer to show the user how the brain works.
 
@@ -213,7 +312,7 @@ Fill every `{{PLACEHOLDER}}`. Delete sections that don't apply instead of leavin
 ~~~~markdown
 # {{NAME}}'s Brain
 
-> Claude reads this file at the start of every session in this folder. If Claude does something wrong, edit this file to fix it.
+> Claude reads this file at the start of every session that uses this brain. If Claude does something wrong, edit this file to fix it.
 > Installed with brain-v1.0 on {{TODAY}}, from https://github.com/danjamk/agentic-guides/tree/main/brain
 
 ## Who I am
@@ -223,6 +322,8 @@ Fill every `{{PLACEHOLDER}}`. Delete sections that don't apply instead of leavin
 ## What this is
 
 My personal brain: a folder of plain notes that you (Claude) read and maintain so you remember my life, work, and context between sessions. You act as my thinking partner, note-taker, and filing clerk.
+
+{{STORAGE_SECTION}}
 
 ## Start of every session
 
@@ -393,6 +494,18 @@ This file is the brain's rulebook. When I correct how you do something, propose 
   ```
 - `{{STYLE_PREFERENCES}}`: the user's Q7 answer, written as short instructions. If they skipped it, use: "Be clear and direct. Use plain language. Lead with the answer."
 - `{{AREA_LIST}}`: the area folder names, comma-separated, such as "`clients/`, `job-search/`, `personal/health/`."
+- `{{STORAGE_SECTION}}`: local path, delete it. GitHub path, use this, with `{{REPO}}` as `username/repository` and `{{TOKEN_EXPIRES}}` as the token's expiry date in `YYYY-MM-DD` format. If there's no date, change the token bullet's first two sentences to "The access token's expiry date isn't recorded." and keep the rest. Skip hand-off item 8 too.
+  ```
+  ## Where this brain lives
+  This brain is my private GitHub repository `{{REPO}}`, which you reach through the GitHub brain connector. There's no copy on my computer.
+  - Read and save files only in this repository, on its main branch. Never create branches, pull requests, or other repositories.
+  - Read a file right before changing it. If a save fails because the file changed in the meantime, read it again, add my change to the new version, and try once more. If it fails again, tell me.
+  - When saving several files at once, save them together in one change.
+  - Moving a file means saving it in the new place, then removing the old one. GitHub keeps the old version in its history.
+  - If the connector isn't on in this conversation, tell me to turn it on from the + menu. Don't guess what's in my notes.
+  - The access token expires on {{TOKEN_EXPIRES}}. Starting two weeks before, remind me once at the start of each session. If the connector stops working and GitHub says the request isn't authorized, the token has probably expired. Walk me through making a new token with the same settings, then removing the connector and adding it again with the new token and the same blocked tools, because a connector's settings can't be edited. Then update the date here.
+  - Never ask me for the token, and never save it anywhere in the brain.
+  ```
 
 ### Template B: `hot.md`
 
@@ -515,6 +628,8 @@ One page per concept I'm learning about. Every page gets a `## Sources` section.
 
 Don't save this as a file. Show it to the user in Step 6 so they can paste it into their settings. Keep it under 8 lines, because it applies to every conversation, including ones that have nothing to do with the brain.
 
+Local path:
+
 ~~~~text
 I keep a personal "brain": a folder of notes called {{FOLDER_NAME}} on my computer.
 - When that folder is connected to a conversation, read CLAUDE.md and hot.md in it before answering, and follow CLAUDE.md.
@@ -523,7 +638,18 @@ I keep a personal "brain": a folder of notes called {{FOLDER_NAME}} on my comput
 {{STYLE_LINE_OR_DELETE}}
 ~~~~
 
+GitHub path:
+
+~~~~text
+I keep a personal "brain": notes in my private GitHub repository {{REPO}}, which you reach through my GitHub brain connector.
+- When I ask about my work, people, or plans, or ask you to save something, read CLAUDE.md and hot.md from that repository first, and follow CLAUDE.md.
+- If the connector isn't on in this conversation, tell me to turn it on instead of guessing.
+- Never save passwords, account numbers, ID numbers, or access tokens in it.
+{{STYLE_LINE_OR_DELETE}}
+~~~~
+
 - `{{FOLDER_NAME}}`: the folder's name and rough location, such as "Brain, in my Documents folder."
+- `{{REPO}}`: `username/repository`, such as `sam-lee/brain`.
 - `{{STYLE_LINE_OR_DELETE}}`: the user's Q7 answer as one line starting with "- ", so their style preferences apply everywhere. Delete it if they skipped Q7.
 
 ---
@@ -534,7 +660,7 @@ Newest first. Each change says what it affects in a brain, whether brains made b
 
 ### brain-v1.0 (2026-10-01)
 
-- First release. Nothing to upgrade.
+- First release, with two places to keep the brain: a local folder, or a private GitHub repository reached through GitHub's connector. Nothing to upgrade.
 
 ---
 
