@@ -149,6 +149,8 @@ Also say this once, before the connector step: Claude's connector list includes 
 
 Don't create a test file. The first real file you save in Step 5 is the test.
 
+If you skipped step 4 because the connector already worked, you don't know when the token expires. Ask the user. They can find the date on GitHub's token page (https://github.com/settings/personal-access-tokens). If they can't find it, or the token has no expiry date, leave the date out of CLAUDE.md as the fill rule for `{{STORAGE_SECTION}}` says.
+
 #### Upgrading an existing brain
 
 Use this only when Step 1 found a brain made by an older version, and the user wants the updates. Skip the interview.
@@ -492,7 +494,7 @@ This file is the brain's rulebook. When I correct how you do something, propose 
   ```
 - `{{STYLE_PREFERENCES}}`: the user's Q7 answer, written as short instructions. If they skipped it, use: "Be clear and direct. Use plain language. Lead with the answer."
 - `{{AREA_LIST}}`: the area folder names, comma-separated, such as "`clients/`, `job-search/`, `personal/health/`."
-- `{{STORAGE_SECTION}}`: local path, delete it. GitHub path, use this, with `{{REPO}}` as `username/repository` and `{{TOKEN_EXPIRES}}` as the token's expiry date in `YYYY-MM-DD` format:
+- `{{STORAGE_SECTION}}`: local path, delete it. GitHub path, use this, with `{{REPO}}` as `username/repository` and `{{TOKEN_EXPIRES}}` as the token's expiry date in `YYYY-MM-DD` format. If there's no date, change the token bullet's first two sentences to "The access token's expiry date isn't recorded." and keep the rest. Skip hand-off item 8 too.
   ```
   ## Where this brain lives
   This brain is my private GitHub repository `{{REPO}}`, which you reach through the GitHub brain connector. There's no copy on my computer.
