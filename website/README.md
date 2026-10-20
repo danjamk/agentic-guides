@@ -46,7 +46,7 @@ Your plan lists these in order. Each is a separate guide Claude follows inside y
 | Setup | Accounts, a live starter site, your name on it | About 30 minutes | (see Steps above) | [website-installer.md](website-installer.md) | Ready to test |
 | Discovery | Questions about you, your business and what you already have; your plan is adjusted to fit | About 20 minutes | "let's do the discovery interview" | [interview-discovery.md](interview-discovery.md) | Ready to test |
 | Brand | Colors, fonts, logo and the way your site sounds | 15–45 minutes | "let's do the brand interview" | [interview-brand.md](interview-brand.md) | Ready to test |
-| Site map | Which pages you need and what each one is for | About 20 minutes | "let's plan the pages" | | Planned |
+| Site map | Which pages you need and what each one is for | About 20 minutes | "let's plan the pages" | [interview-sitemap.md](interview-sitemap.md) | Ready to test |
 | Pages | One page at a time, each on a preview link first | About 30 minutes a page | "let's work on the <page> page" | | Planned |
 
 ## Add-ons

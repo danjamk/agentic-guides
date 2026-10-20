@@ -170,7 +170,7 @@ Straight to `main`, per STATE.md, whether or not they published:
 ~~~~markdown
 # Brand
 
-**Format:** website-state-v1.2 · **Made in:** brand-v1.0 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.3 · **Made in:** brand-v1.0 · **Last updated:** {{DATE}}
 
 Claude follows this file whenever it writes words or changes the look of the site.
 
