@@ -1,6 +1,6 @@
 # Website project state files
 
-**Version:** website-state-v1.1 (2026-10-20)
+**Version:** website-state-v1.2 (2026-10-20)
 
 The format every website guide uses to save a person's progress, and to pick it up again in a later session. The installer, the interviews and the template all read and write these files, so they follow this spec and not their own variants.
 
@@ -19,13 +19,15 @@ Astro only builds `src/` and `public/`, so nothing in `docs/` is published on th
 | `docs/project/PLAN.md` | The installer creates it; every guide updates it | The person's plan: stages, time estimates, checkboxes, and one "Next up" line |
 | `docs/project/profile.md` | The discovery interview; later interviews update it | A short summary of who the person is and what shapes the site's strategy |
 | `docs/project/interviews/<name>.md` | Each interview, one file per interview | Every question with its answer, or marked skipped or pending |
+| `docs/project/brand.md` | The brand interview; its format is Template A in `interview-brand.md` | Colors, fonts, logo and voice. Claude follows it whenever it writes words or changes the look |
+| `docs/project/brand-files/` | The person, by uploading on GitHub's website | Logo, guidelines and other brand files, as the person gave them. Read by the brand interview; never published |
 
 `<name>` is the interview's short name: `discovery`, `brand`, `sitemap`, or `page-<page-slug>` for a page interview (`page-about`). Decisions an interview makes as architecture decision records go in `docs/adr/`, defined by the base ADRs (#18, base ADRs), not here.
 
 Every file starts with a format line, so a later guide can tell which version of this spec wrote it:
 
 ~~~~markdown
-**Format:** website-state-v1.1
+**Format:** website-state-v1.2
 ~~~~
 
 ## PLAN.md
@@ -33,7 +35,7 @@ Every file starts with a format line, so a later guide can tell which version of
 ~~~~markdown
 # Website plan
 
-**Format:** website-state-v1.1 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.2 · **Last updated:** {{DATE}}
 
 **Next up:** {{NEXT_UP}}
 **Pace:** {{PACE}}
@@ -83,7 +85,7 @@ Rules:
 ~~~~markdown
 # About you and your site
 
-**Format:** website-state-v1.1 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.2 · **Last updated:** {{DATE}}
 
 Written from the discovery interview. Claude reads this before every session; edit it any time.
 
@@ -115,7 +117,7 @@ The interview files hold the full answers. `profile.md` is the summary a guide r
 ~~~~markdown
 # {{INTERVIEW_TITLE}}
 
-**Format:** website-state-v1.1 · **Guide:** {{GUIDE_VERSION}}
+**Format:** website-state-v1.2 · **Guide:** {{GUIDE_VERSION}}
 **Status:** {{STATUS}} · **Started:** {{STARTED}} · **Last updated:** {{UPDATED}}
 
 ## {{QUESTION_ID}}
@@ -185,6 +187,11 @@ website-starter ships:
 - A "Project state" section in `CLAUDE.md` that points to these files and to this spec on `main`.
 
 ## Changelog
+
+### website-state-v1.2 (2026-10-20)
+- **`docs/project/brand.md` and `docs/project/brand-files/`** join the state files. Affects: Files table.
+  Existing files: not needed. The brand interview creates both; template 0.5.0 ships the folder.
+  How to apply: nothing to change.
 
 ### website-state-v1.1 (2026-10-20)
 - **The discovery interview may change the whole plan.** It can add lines to any stage, change time estimates, and mark add-ons recommended. No guide deletes or reorders; a line that no longer applies is marked "— not needed". Affects: PLAN.md rules.
