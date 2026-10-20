@@ -37,6 +37,18 @@ A website for your business that you own and change by talking to Claude. It's h
 
 Open claude.ai/code, pick your site, and say **"let's keep going."** Claude reads your plan and suggests the next step. You can stop at any point, mid-question included, and pick up later.
 
+## The steps
+
+Your plan lists these in order. Each is a separate guide Claude follows inside your site; you just say the phrase.
+
+| Step | What happens | Time | Say | Guide | Status |
+|---|---|---|---|---|---|
+| Setup | Accounts, a live starter site, your name on it | About 30 minutes | (see Steps above) | [website-installer.md](website-installer.md) | Ready to test |
+| Discovery | Questions about you, your business and what you already have; your plan is adjusted to fit | About 20 minutes | "let's do the discovery interview" | [interview-discovery.md](interview-discovery.md) | Ready to test |
+| Brand | Colors, fonts, logo and the way your site sounds | 15–45 minutes | "let's do the brand interview" | | Planned |
+| Site map | Which pages you need and what each one is for | About 20 minutes | "let's plan the pages" | | Planned |
+| Pages | One page at a time, each on a preview link first | About 30 minutes a page | "let's work on the <page> page" | | Planned |
+
 ## Add-ons
 
 Add-ons do things not every site needs. Each is a separate guide Claude follows. You don't need to remember this list: when you ask for something your site can't do yet, Claude checks here and suggests what fits.
