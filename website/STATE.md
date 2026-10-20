@@ -1,6 +1,6 @@
 # Website project state files
 
-**Version:** website-state-v1.3 (2026-10-20)
+**Version:** website-state-v1.4 (2026-10-20)
 
 The format every website guide uses to save a person's progress, and to pick it up again in a later session. The installer, the interviews and the template all read and write these files, so they follow this spec and not their own variants.
 
@@ -21,6 +21,7 @@ Astro only builds `src/` and `public/`, so nothing in `docs/` is published on th
 | `docs/project/interviews/<name>.md` | Each interview, one file per interview | Every question with its answer, or marked skipped or pending |
 | `docs/project/brand.md` | The brand interview; its format is Template A in `interview-brand.md` | Colors, fonts, logo and voice. Claude follows it whenever it writes words or changes the look |
 | `docs/project/brand-files/` | The person, by uploading on GitHub's website | Logo, guidelines and other brand files, as the person gave them. Read by the brand interview; never published |
+| `docs/project/uploads/` | The person, by uploading on GitHub's website | Photos and documents for pages. Read by the page interview, which copies what a page needs into `public/`; never published from here |
 | `docs/project/sitemap.md` | The site map interview creates it; the page interview updates each page's status | Every page: address, purpose, menu placement, status, and the old address it replaces. Format: Template A in `interview-sitemap.md` |
 
 `<name>` is the interview's short name: `discovery`, `brand`, `sitemap`, or `page-<page-slug>` for a page interview (`page-about`). Decisions an interview makes as architecture decision records go in `docs/adr/`, defined by the base ADRs (#18, base ADRs), not here.
@@ -28,7 +29,7 @@ Astro only builds `src/` and `public/`, so nothing in `docs/` is published on th
 Every file starts with a format line, so a later guide can tell which version of this spec wrote it:
 
 ~~~~markdown
-**Format:** website-state-v1.3
+**Format:** website-state-v1.4
 ~~~~
 
 ## PLAN.md
@@ -36,7 +37,7 @@ Every file starts with a format line, so a later guide can tell which version of
 ~~~~markdown
 # Website plan
 
-**Format:** website-state-v1.3 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.4 · **Last updated:** {{DATE}}
 
 **Next up:** {{NEXT_UP}}
 **Pace:** {{PACE}}
@@ -86,7 +87,7 @@ Rules:
 ~~~~markdown
 # About you and your site
 
-**Format:** website-state-v1.3 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.4 · **Last updated:** {{DATE}}
 
 Written from the discovery interview. Claude reads this before every session; edit it any time.
 
@@ -118,7 +119,7 @@ The interview files hold the full answers. `profile.md` is the summary a guide r
 ~~~~markdown
 # {{INTERVIEW_TITLE}}
 
-**Format:** website-state-v1.3 · **Guide:** {{GUIDE_VERSION}}
+**Format:** website-state-v1.4 · **Guide:** {{GUIDE_VERSION}}
 **Status:** {{STATUS}} · **Started:** {{STARTED}} · **Last updated:** {{UPDATED}}
 
 ## {{QUESTION_ID}}
@@ -188,6 +189,11 @@ website-starter ships:
 - A "Project state" section in `CLAUDE.md` that points to these files and to this spec on `main`.
 
 ## Changelog
+
+### website-state-v1.4 (2026-10-20)
+- **`docs/project/uploads/`** joins the state files, for page photos and documents. Affects: Files table.
+  Existing files: not needed. Template 0.6.0 ships the folder.
+  How to apply: nothing to change.
 
 ### website-state-v1.3 (2026-10-20)
 - **`docs/project/sitemap.md`** joins the state files. The site map interview replaces stage 5's placeholder line with one line per page. Affects: Files table, PLAN.md fill rules.

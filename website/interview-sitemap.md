@@ -145,7 +145,7 @@ Straight to `main`, per STATE.md:
 ~~~~markdown
 # Site map
 
-**Format:** website-state-v1.3 · **Made in:** sitemap-v1.0 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.4 · **Made in:** sitemap-v1.0 · **Last updated:** {{DATE}}
 
 The pages of the site, what each one is for, and where each one stands. The page interview works through this list.
 
