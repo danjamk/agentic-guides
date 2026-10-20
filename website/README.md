@@ -53,13 +53,13 @@ Your plan lists these in order. Each is a separate guide Claude follows inside y
 
 Add-ons do things not every site needs. Each is a separate guide Claude follows. You don't need to remember this list: when you ask for something your site can't do yet, Claude checks here and suggests what fits.
 
-| Add-on | What it adds | Effort | Status |
-|---|---|---|---|
-| Contact form | A form visitors fill in to reach you. Claude helps you pick where messages go: your email, a customer-management tool you already use, or a form service | About 30 minutes | Planned |
-| Move an existing site | Brings the pages and words from a site you already have, and keeps old links working | Depends on the size of the site | Planned |
-| Your own web address | Puts the site on a domain you own, such as `yourbusiness.com`, and lets search engines find it | About 20 minutes, plus waiting for the address to switch over | Planned |
-| Visitor statistics | Simple counts of visits and where visitors came from | About 10 minutes | Planned |
-| Extra publishing safety | A separate check before changes reach the live site, for sites where several people make changes | More technical | Planned |
+| Add-on | What it adds | Effort | Say | Status |
+|---|---|---|---|---|
+| Contact form | A form visitors fill in to reach you. Claude helps you pick where messages go: your email, a customer-management tool you already use, or a form service | About 30 minutes | | Planned |
+| Move an existing site | Brings the pages and words from a site you already have, and keeps old links working | Depends on the size of the site | | Planned |
+| [Your own web address](addon-custom-domain.md) | Puts the site on a domain you own, such as `yourbusiness.com`, and lets search engines find it | About 20 minutes, plus waiting for the address to switch over | "connect my domain" | Ready to test |
+| [Visitor statistics](addon-analytics.md) | Counts of visits, which pages are read, and where visitors came from | About 10 minutes, after your own web address | "add visitor statistics" | Ready to test |
+| Extra publishing safety | A separate check before changes reach the live site, for sites where several people make changes | More technical | | Planned |
 
 ## Privacy
 
