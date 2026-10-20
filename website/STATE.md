@@ -1,6 +1,6 @@
 # Website project state files
 
-**Version:** website-state-v1.0 (2026-10-20)
+**Version:** website-state-v1.1 (2026-10-20)
 
 The format every website guide uses to save a person's progress, and to pick it up again in a later session. The installer, the interviews and the template all read and write these files, so they follow this spec and not their own variants.
 
@@ -25,7 +25,7 @@ Astro only builds `src/` and `public/`, so nothing in `docs/` is published on th
 Every file starts with a format line, so a later guide can tell which version of this spec wrote it:
 
 ~~~~markdown
-**Format:** website-state-v1.0
+**Format:** website-state-v1.1
 ~~~~
 
 ## PLAN.md
@@ -33,9 +33,10 @@ Every file starts with a format line, so a later guide can tell which version of
 ~~~~markdown
 # Website plan
 
-**Format:** website-state-v1.0 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.1 · **Last updated:** {{DATE}}
 
 **Next up:** {{NEXT_UP}}
+**Pace:** {{PACE}}
 
 ## 1. Get a site online — about 15 minutes
 - [ ] Accounts: GitHub and Cloudflare
@@ -66,11 +67,14 @@ Every file starts with a format line, so a later guide can tell which version of
 Fill rules:
 - `{{DATE}}`: today, `YYYY-MM-DD`.
 - `{{NEXT_UP}}`: one action the person can start next, with its time estimate, in plain words: "Discovery interview, about 20 minutes. Say *let's do the discovery interview*." Rewrite it every time a guide ends or stops.
+- `{{PACE}}`: written by the discovery interview, from the person's time per week and launch date. Leave the whole line out until then, or if they skipped both.
 - `{{PAGE_LINES}}`: one `- [ ] <Page name>` line per page. Until the site map interview has run, write `- [ ] Added after the site map interview`.
 
 Rules:
 - A guide checks its own boxes and no others. A box is checked only when that step is done, not when it starts.
-- A guide may add lines inside its own stage, for example one per page. It does not remove or reorder stages.
+- A guide may add lines inside its own stage, for example one per page.
+- The discovery interview may also add lines to any stage, change any stage's time estimate, and mark optional add-ons as recommended, because its job is fitting the plan to the person.
+- No guide deletes a line or a stage, or reorders stages. A line that no longer applies gets "— not needed: <reason>" after it.
 - An interview that stops partway leaves its box unchecked and puts "(in progress)" after the line.
 - Time estimates are for the person's time, not Claude's.
 
@@ -79,7 +83,7 @@ Rules:
 ~~~~markdown
 # About you and your site
 
-**Format:** website-state-v1.0 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.1 · **Last updated:** {{DATE}}
 
 Written from the discovery interview. Claude reads this before every session; edit it any time.
 
@@ -111,7 +115,7 @@ The interview files hold the full answers. `profile.md` is the summary a guide r
 ~~~~markdown
 # {{INTERVIEW_TITLE}}
 
-**Format:** website-state-v1.0 · **Guide:** {{GUIDE_VERSION}}
+**Format:** website-state-v1.1 · **Guide:** {{GUIDE_VERSION}}
 **Status:** {{STATUS}} · **Started:** {{STARTED}} · **Last updated:** {{UPDATED}}
 
 ## {{QUESTION_ID}}
@@ -181,6 +185,14 @@ website-starter ships:
 - A "Project state" section in `CLAUDE.md` that points to these files and to this spec on `main`.
 
 ## Changelog
+
+### website-state-v1.1 (2026-10-20)
+- **The discovery interview may change the whole plan.** It can add lines to any stage, change time estimates, and mark add-ons recommended. No guide deletes or reorders; a line that no longer applies is marked "— not needed". Affects: PLAN.md rules.
+  Existing files: not needed.
+  How to apply: nothing to change in existing files; follow the new rule from now on.
+- **Optional `**Pace:**` line in PLAN.md**, under "Next up", written by discovery. Affects: PLAN.md template.
+  Existing files: not needed. Discovery adds it when it runs.
+  How to apply: update the format line to website-state-v1.1 the next time the file is saved.
 
 ### website-state-v1.0 (2026-10-20)
 - First version.
