@@ -36,7 +36,7 @@ You are connecting a domain to a website set up with the website installer. Thes
 ### Step 1: Preflight
 
 1. **Check you're in the site** (`wrangler.jsonc`, `src/site.config.ts`, `docs/project/PLAN.md`), switch to `main`, `git pull`.
-2. **Check the pages are ready.** `grep -rl data-placeholder src/pages/` lists pages still showing sample text. If any would go public, say which, and recommend finishing them or removing them from the menu first. The person decides.
+2. **Check the pages are ready:** `npm ci`, `npm run build`, `npm run check:strict`. It lists pages still showing sample text and the starter's example email, which would go public with the domain. Say which, and recommend finishing them (or removing a page from the menu) first. The person decides. On a template older than 0.8.0 there's no `check:strict`; use `grep -rl data-placeholder src/pages/` instead.
 3. **Look for `docs/project/interviews/custom-domain.md`.** Resume from it if it's `in progress`; it records which step was reached. Otherwise create it per STATE.md with `**Guide:** custom-domain-v1.0` and questions 1–2 as `pending`.
 4. **Already done?** If the live site in `CLAUDE.md` is already their own domain, say so and offer to check it (Step 7) instead.
 

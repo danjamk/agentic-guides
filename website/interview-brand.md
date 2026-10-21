@@ -37,7 +37,7 @@ You are running the brand interview for a person whose website was set up with t
 
 ### Step 1: Preflight
 
-1. **Check you're in the site:** `wrangler.jsonc`, `src/site.config.ts`, `src/styles/tokens.css` and `docs/project/PLAN.md` exist. If `docs/project/brand-files/` is missing, this site is on a template older than 0.5.0: offer **template-update** first, or create that folder with a one-line `README.md` as a `docs/` save.
+1. **Check you're in the site:** `wrangler.jsonc`, `src/site.config.ts`, `src/styles/tokens.css` and `docs/project/PLAN.md` exist. If `docs/project/brand-files/` is missing, this site is on a template older than 0.5.0: offer **template-update** first, or create that folder with a one-line `README.md` as a `docs/` save. If `src/styles/tokens.css` has no `.brand-scope`, the site is older than 0.9.0 and an options page won't show each option's colors: apply that update first (its CHANGELOG entry says how).
 2. **Get up to date:** switch to `main` and `git pull`.
 3. **Check discovery ran:** `docs/project/interviews/discovery.md` has `**Status:** done`. If not, recommend doing discovery first (about 20 minutes). If the person wants to go ahead anyway, ask question 0 below.
 4. **Look for `docs/project/interviews/brand.md`:**
@@ -52,7 +52,7 @@ Read the "Brand source" decision record in `docs/adr/` (from discovery) and the 
 | Brand source | Path |
 |---|---|
 | Supplied: they have a logo and colors | **Bring**: Step 3a |
-| Partly supplied: some pieces, such as a logo but no colors | **Bring** for what exists, **Create** for the rest. Usually the colors come from the logo. |
+| Partly supplied: some pieces, such as a logo but no colors | **Bring** for what exists (Step 3a), then options only for what's missing. Usually the colors come from the logo, and the options are two or three font pairings in those colors. Skip Step 3b's questions that the supplied pieces already answer. |
 | Created here | **Create**: Step 3b |
 
 **Question 0, only if there's no decision record:** "Do you already have a logo, brand colors or fonts you want to use?" [`brand-source`. Decides the path. No record is written for it here.]
@@ -91,7 +91,7 @@ Open with one line, for example:
 - Start a draft named `brand` (see the **preview** skill).
 - Each option: a main color, a neutral set (text, secondary text, borders, light background), and a font pairing (heading and body, or one font for both). Make the options differ in feel, not only in hue. Every option must pass the contrast check in Step 4 before you show it.
 - Fonts: install each option's font packages on the draft (`npm install @fontsource-variable/<slug>` where it exists, otherwise `@fontsource/<slug>`). At most three font families across all options.
-- Add `src/pages/brand-options.astro`, using the `Base` layout with `noindex`. For each option, a section whose wrapper sets the option's `--brand-*` values in a `style` attribute, showing: the option's letter and a one-line description; the business name as a heading; the tagline; a short paragraph; a link; a button; a card; and color swatches with their codes. Import the option fonts in this page only.
+- Add `src/pages/brand-options.astro`, using the `Base` layout with `noindex`. For each option, a `<section class="section brand-scope">` that sets the option's `--brand-*` values (colors and `--brand-font-heading`/`--brand-font-body`) in its `style` attribute. The `brand-scope` class is what makes the page's text, links, buttons and headings use them. Add `section--alt` to every other option so they're easy to tell apart. Each shows: the option's letter and a one-line description; the business name as a heading; the tagline; a short paragraph; a link; a button; a card; and color swatches with their codes. Import the option fonts in this page only.
 - Build, save and send, wait for the preview, and give the person `https://brand-{{PROJECT}}.{{SUBDOMAIN}}.workers.dev/brand-options`.
 - When they've chosen: remove the options page (`git rm src/pages/brand-options.astro`), uninstall font packages no longer used, and continue on the same draft with Step 4.
 
