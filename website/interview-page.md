@@ -27,6 +27,8 @@ You are writing one page of a website with a person whose site was set up with t
 ### Rules for the whole interview
 
 - **Speak plainly.** One question at a time. "Skip" and "stop" work any time.
+- **"Just make something"** or "enough questions": stop asking, mark the rest `skipped`, and write the draft from what you have. Leave out sections that need facts you don't have, and say what's missing in the preview message.
+- **Questions off the page's subject** ("can people pay a deposit online?"): answer in two lines, add an `Idea:` line to the plan per STATE.md, and come back to the page.
 - **Save as you go, per STATE.md.**
 - **Write in the person's voice,** from the Voice section of `brand.md`: how it sounds, "we" or "I", words to use and avoid. Without a `brand.md`, write plainly and warmly, and ask after the first draft whether it sounds like them.
 - **Use only facts the person gave you.** Never invent prices, hours, credentials, client names, reviews, numbers or claims. If a section needs a fact you don't have, ask, or leave the section out. Never publish a guess.
@@ -40,20 +42,23 @@ You are writing one page of a website with a person whose site was set up with t
 1. **Check you're in the site** and switch to `main`, then `git pull`.
 2. **Find the page** in `docs/project/sitemap.md` by name or address.
    - **Not in the site map:** ask whether it's a new page. If yes, add it to `sitemap.md` (status `planned`) and to the plan's stage 5 as a `docs/` save first, then continue.
-   - **No `sitemap.md`:** recommend the site map interview first. If the person goes ahead, continue with just this page.
-3. **Check `brand.md` exists.** If not, say the page will be written in a plain voice and can be adjusted after the brand interview. Then continue.
-   **Check the email address.** If `email` in `src/site.config.ts` is still `hello@example.com`, ask for the address visitors should write to before writing anything, because pages and the footer link to it. Set it in `site.config.ts` on this page's draft.
+   - **No `sitemap.md`:** in the `guided` way, recommend the site map interview first. In the `direct` way, or if the person goes ahead, continue with just this page.
+3. **Check `brand.md` exists.** If not, write in the voice rule from `CLAUDE.md` and continue. In the `guided` way, say it can be adjusted after the brand interview.
+   **Check the contact details.** If `email` in `src/site.config.ts` is still `hello@example.com`, ask how visitors should reach them before writing anything: phone, email or both, and the number or address. Pages and the footer link to them. If they want calls only, set `email` to `''`. Set both in `site.config.ts` on this page's draft. [`contact`. The first question in the interview file when asked.]
 4. **Look for `docs/project/interviews/page-<slug>.md`** (`<slug>` is the page's address without the `/`; `home` for the home page):
    - **Missing:** create it per STATE.md with `**Guide:** page-v1.0`, `**Status:** in progress`, and questions 1–4 plus the page-type questions from Step 2, all `pending`.
    - **`in progress`:** resume. If a `page-<slug>` draft exists (`git branch -r`), the page has been drafted: show its preview link and ask what to change. Otherwise continue at the first `pending` question.
    - **`done`:** the page has been written. Ask what they'd like to change and make it with **preview**.
 5. **Read the page's current file.** Note what's sample text (`data-placeholder`) and what's already real.
+6. **Read the site map's notes:** the **Notes for pages** line in `sitemap.md` may hold requests for this page ("Home: link to Seed Library"). Do them in this draft. If the page's row has an old address, ask in question 3 for the old page's words: "Paste the text from your old <page> page, and I'll reuse what still fits."
 
 ### Step 2: Interview
 
 Open with one line:
 
-> A few questions about the {{PAGE_NAME}} page, then I'll write it and show you. About 30 minutes, and you can stop any time.
+> {{COUNT}} questions about the {{PAGE_NAME}} page, then I'll write it and show you. About 30 minutes. You can stop any time, or say "just make something" and I'll write it from what I have.
+
+`{{COUNT}}`: the questions you'll actually ask, after leaving out what you already know.
 
 **Questions for every page:**
 
@@ -68,7 +73,7 @@ Open with one line:
 4. **Is there anything this page must say, or must not say?** Prices, guarantees, areas you cover, qualifications, things you don't do.
    [`must-say`. Facts here go on the page as they gave them.]
 
-**Questions by kind of page.** Ask the ones whose answers you don't already have from question 3. One at a time.
+**Questions by kind of page.** Ask the ones whose answers you don't already have from question 3. One at a time. A page that fits two rows (a Cakes page lists products and explains ordering) takes questions from both.
 
 | Page | Ask about |
 |---|---|
@@ -80,7 +85,7 @@ Open with one line:
 | How to order, Book, Get involved | The steps, in order; what it costs; how long it takes; where it happens (on this site, by email, on another service). |
 | Privacy | Whether anything has been added that collects information: a form, analytics, embeds, a newsletter. The starter's text is accurate only if nothing has. Suggest checking with an adviser if they handle sensitive information. |
 
-[Each answer: `<page-type>-<topic>` as its ID, for example `services-items`, `about-people`.]
+[Each answer: `<slug>-<topic>` as its ID, using the page's slug, for example `services-items`, `volunteer-steps`.]
 
 ### Step 3: Plan the page
 
@@ -102,7 +107,7 @@ On a draft named `page-<slug>` (the **preview** skill):
 3. **Photos:** copy from `docs/project/uploads/` to `public/images/<slug>/`, with plain lowercase names (`team.jpg`). Use `<img src width height alt loading="lazy">` with the image's real pixel size; inside a `.figure` with a `<figcaption>` when a caption helps. The first image near the top of the page doesn't get `loading="lazy"`. If a photo is over about 1 MB, say so and ask for a smaller version, or use it for now and note it.
 4. **Documents:** copy to `public/files/` and link them with the file type and size in the link text ("Download our menu (PDF, 240 KB)"). Put the key facts on the page as text too.
 5. **Home page:** link to the main pages, and lead with the site's main job from `profile.md`. Update `site.tagline` in `site.config.ts` too if the person's one-liner has changed.
-6. **Contact details** belong in `site.config.ts` when other pages need them (`email`). Change it there, not in each page.
+6. **Contact details** belong in `site.config.ts` when other pages need them (`email`, `phone`). Change them there, not in each page. Add facts the person gave that other pages may need (hours, area served) to **The business** in `profile.md`.
 7. **Build, save, send, preview.** Give the link to the page, and one line on what's on it.
 
 > Here's the {{PAGE_NAME}} page: {{PREVIEW_LINK}}
@@ -120,7 +125,7 @@ Save the interview file and push at this point, even though the page isn't publi
 
 Straight to `main`, per STATE.md:
 
-1. **`docs/project/sitemap.md`:** the page's status becomes `published`, or `drafted` if they didn't publish.
+1. **`docs/project/sitemap.md`:** the page's status becomes `published`, or `drafted` if they didn't publish. Remove any note in **Notes for pages** that this page took care of.
 2. **`docs/project/PLAN.md`:** check the page's line in stage 5 if it was published. Next up: the next unchecked page, about 30 minutes. When every page is checked, Next up is the first line of stage 6, "Go live."
 3. **`docs/project/interviews/page-<slug>.md`:** `**Status:** done` when published. Leave it `in progress` if they didn't publish.
 4. Commit with `docs: save <page name> page` and push.

@@ -34,7 +34,9 @@ You are adding visitor statistics to a website set up with the website installer
 
 1. **Check you're in the site,** switch to `main`, `git pull`.
 2. **Check the template supports it:** `src/analytics.mjs` exists, and `src/layouts/Base.astro` includes `<Analytics />`. If not, the site is on a template older than 0.7.0: run **template-update** first (it's one of the listed updates).
-3. **Check the site is on its own address:** `curl -sS <live address>/robots.txt` doesn't say `Disallow: /`. Statistics load only on builds search engines can see, so on a `workers.dev`-only site nothing would load. If it isn't, recommend the custom domain add-on first, and stop.
+3. **Check the site is on its own address:** `curl -sS <live address>/robots.txt` doesn't say `Disallow: /`. Statistics load only on builds search engines can see, so on a `workers.dev`-only site nothing would load. If it isn't, stop here, and:
+   - Tell them the whole order, with times: finish the pages still showing sample text (`npm run build` then `npm run check:strict` lists them; about 30 minutes each), then the custom domain add-on (about 20 minutes plus a wait, and a yearly fee), then this (about 10 minutes).
+   - Add "— asked for <date>; needs your own web address first" to the plan's Analytics line, a `docs/` save, so the request isn't lost.
 4. **Check for statistics already running:** `curl -sS <live address>/ | grep -o -e cloudflareinsights -e googletagmanager`. If either appears, say which is already on and ask what they'd like to change.
 5. Create or resume `docs/project/interviews/analytics.md` per STATE.md, `**Guide:** analytics-v1.0`.
 

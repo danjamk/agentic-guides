@@ -36,8 +36,8 @@ You are connecting a domain to a website set up with the website installer. Thes
 ### Step 1: Preflight
 
 1. **Check you're in the site** (`wrangler.jsonc`, `src/site.config.ts`, `docs/project/PLAN.md`), switch to `main`, `git pull`.
-2. **Check the pages are ready:** `npm ci`, `npm run build`, `npm run check:strict`. It lists pages still showing sample text and the starter's example email, which would go public with the domain. Say which, and recommend finishing them (or removing a page from the menu) first. The person decides. On a template older than 0.8.0 there's no `check:strict`; use `grep -rl data-placeholder src/pages/` instead.
-3. **Look for `docs/project/interviews/custom-domain.md`.** Resume from it if it's `in progress`; it records which step was reached. Otherwise create it per STATE.md with `**Guide:** custom-domain-v1.0` and questions 1–2 as `pending`.
+2. **Check the pages are ready:** `npm ci`, `npm run build`, `npm run check:strict`. It lists pages still showing sample text and the starter's example email, which would go public with the domain. Say which, and recommend finishing them (or removing a page from the menu) before the switch-over in Step 5. The person decides. Steps 2–4 are safe to do now: getting the domain onto Cloudflare doesn't change any old website or email, and its wait can run while pages are finished. On a template older than 0.8.0 there's no `check:strict`; use `grep -rl data-placeholder src/pages/` instead.
+3. **Look for `docs/project/interviews/custom-domain.md`.** Resume from it if it's `in progress`, at its `**Reached:**` step. Otherwise create it per STATE.md with `**Guide:** custom-domain-v1.0`, questions 1–2 as `pending`, and `**Reached:** Step 2`. Update `**Reached:**` as each step finishes, and save. It stays `in progress` until Step 8. If the person stops, Next up is "Finish connecting your domain: next is <the next step, in plain words>. Say *connect my domain*."
 4. **Already done?** If the live site in `CLAUDE.md` is already their own domain, say so and offer to check it (Step 7) instead.
 
 ### Step 2: Two questions
@@ -69,7 +69,7 @@ The site can only use a domain whose address book (DNS) is run by Cloudflare, in
 
 If `sitemap.md` has an "Old address" column, or the person's old site is on this domain:
 
-1. On a draft named `go-live`, create `public/_redirects` with one line per old page: `/old-address /new-address 301`. Old pages marked `dropped` go to the closest new page, or the home page. Paths only, no domain. Keep the file under 2,000 lines.
+1. On a draft named `go-live`, create `public/_redirects` with one line per old page: `/old-address /new-address 301`. Old pages marked `dropped` go to the closest new page, or the home page. Paths only, no domain. A row with `/blog/*` sends every old address under it to one page: `/blog/* /news 301` (Cloudflare's `_redirects` format; not yet tested on this template). Keep the file under 2,000 lines.
 2. Also on this draft, update `CLAUDE.md`'s "Who you're working for": **Live site** becomes `https://{{HOST}}`.
 3. Build, save, send. Test on the preview: `curl -sS -o /dev/null -w "%{http_code} %{redirect_url}\n" <preview>/old-address` should show `301` and the new address.
 4. Publish on a yes, before the switch-over, so the redirects are ready the moment the domain points here.
