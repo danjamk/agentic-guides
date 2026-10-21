@@ -109,7 +109,7 @@ Written from the discovery interview. Claude reads this before every session; ed
 
 Fill rules:
 - Each section is two to five short bullets, written as facts about the person: "Comfortable editing text, not code." "Has a logo as a PNG; no brand colors defined."
-- `{{DECISIONS}}`: one bullet per decision, linking its ADR when there is one: "Keep the current domain, move it later ([ADR 0003](../adr/0003-domain.md))."
+- `{{DECISIONS}}`: one bullet per decision, linking its ADR when there is one: "Keep the current domain, move it later ([0007](../adr/0007-keep-domain.md))." Records 0001–0006 come with the template; the person's start at 0007.
 - A section with no answers yet says `Not asked yet.` A section the person skipped says `Skipped.` Never leave a placeholder.
 
 The interview files hold the full answers. `profile.md` is the summary a guide reads first. When a later interview changes something here, it updates the bullet and the date.

@@ -108,7 +108,7 @@ When no question is `pending`, turn the answers into decisions and plan changes.
 - **Launch within four weeks:** add `- [ ] Launch with Home, About and Contact first; the rest after launch` as the first line of stage 5.
 - **Optional section:** mark add-ons that fit as recommended, with the reason in a few words: `- [ ] Contact form — recommended: your site's main job is getting enquiries`. Add `- [ ] Extra publishing safety — recommended: {{N}} people will edit` if others will edit. Add `- [ ] Move your existing site` here too if they have a site but chose reference only, in case they change their mind.
 - **No budget:** change the "Connect your own domain" line to `- [ ] Connect your own domain — optional; it has a yearly fee. Your free address works until then`.
-- **Pace line:** add `**Pace:** {{TIME}} a week, so about {{WEEKS}} weeks to launch{{DATE_NOTE}}.` under "Next up". Count about 30 minutes per unchecked line. If they skipped the time question, leave the line out.
+- **Pace line:** add `**Pace:** {{TIME}} a week, so about {{WEEKS}} weeks to launch{{DATE_NOTE}}.` under "Next up". Count about 30 minutes per unchecked line, and count stage 5's "Added after the site map interview" line as five pages. The site map interview recomputes this line once the pages are known. If they skipped the time question, leave the line out.
 - **Mark stage 2 done:** check "Discovery interview".
 - **Next up:** the brand interview, with its new estimate. If they're moving an existing site, the next up is the "Move your existing site" add-on instead.
 

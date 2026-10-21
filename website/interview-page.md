@@ -42,6 +42,7 @@ You are writing one page of a website with a person whose site was set up with t
    - **Not in the site map:** ask whether it's a new page. If yes, add it to `sitemap.md` (status `planned`) and to the plan's stage 5 as a `docs/` save first, then continue.
    - **No `sitemap.md`:** recommend the site map interview first. If the person goes ahead, continue with just this page.
 3. **Check `brand.md` exists.** If not, say the page will be written in a plain voice and can be adjusted after the brand interview. Then continue.
+   **Check the email address.** If `email` in `src/site.config.ts` is still `hello@example.com`, ask for the address visitors should write to before writing anything, because pages and the footer link to it. Set it in `site.config.ts` on this page's draft.
 4. **Look for `docs/project/interviews/page-<slug>.md`** (`<slug>` is the page's address without the `/`; `home` for the home page):
    - **Missing:** create it per STATE.md with `**Guide:** page-v1.0`, `**Status:** in progress`, and questions 1–4 plus the page-type questions from Step 2, all `pending`.
    - **`in progress`:** resume. If a `page-<slug>` draft exists (`git branch -r`), the page has been drafted: show its preview link and ask what to change. Otherwise continue at the first `pending` question.

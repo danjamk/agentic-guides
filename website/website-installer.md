@@ -193,7 +193,7 @@ Wait for a yes. If they change anything, show the summary again.
 1. Create a draft named `hello-world`: `git checkout -b hello-world`. If that name exists, use `hello-world-2`. Draft names use only lowercase letters, numbers and dashes, never `/`, so the preview link is predictable.
 2. Edit `src/site.config.ts`: `name`, `tagline`, `description`. Change nothing else.
 3. Add the "Who you're working for" section to `CLAUDE.md` from Template A. It goes on this draft, not straight to `main`, because STATE.md lets only `docs/` changes skip the preview.
-4. Check it builds: `npm ci`, then `npm run build`. If either fails, stop and explain.
+4. Check it builds and passes the checks: `npm ci`, then `npm run build`, then `npm run check`. If any of them fails, stop and explain.
 5. Save and send it: commit with the message `Put business name on the site`, then `git push -u origin hello-world`.
 6. Wait for the preview. The link (`{{PREVIEW_URL}}`) is `https://hello-world-{{PROJECT}}.{{SUBDOMAIN}}.workers.dev`, with the draft's actual name if you used another. Every 15 seconds, for up to 4 minutes, fetch it with `curl -sS` in the shell and look for the commit's short hash (`git rev-parse --short HEAD`) in the page footer. Use `curl`, not a web fetch tool, which can show an older copy of the page. Tell the person it takes about a minute.
 7. **If the preview doesn't appear in 4 minutes,** check that `wrangler.jsonc` has a `"previews": {}` line. Copies made before 2026-10-20 don't, and previews fail without it. If it's missing, add it on this draft, save and send again, and wait again. Otherwise ask the person to open the Cloudflare dashboard → **Workers & Pages** → the project → **Deployments**, and paste the error from the newest build.

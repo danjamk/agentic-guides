@@ -125,7 +125,7 @@ On a draft named `site-map` (the **preview** skill):
 Straight to `main`, per STATE.md:
 
 1. **`docs/project/sitemap.md`** from Template A.
-2. **`docs/project/PLAN.md`:** replace stage 5's "Added after the site map interview" line with one line per page in the agreed order: `- [ ] <Page name> — say *let's work on the <page name> page*`. Pages marked "after launch" get "(after launch)" at the end of the line. Check the site map line in stage 4. Next up: the first page, about 30 minutes.
+2. **`docs/project/PLAN.md`:** replace stage 5's "Added after the site map interview" line with one line per page in the agreed order: `- [ ] <Page name> — say *let's work on the <page name> page*`. Pages marked "after launch" get "(after launch)" at the end of the line. Privacy gets a line too, `- [ ] Privacy — about 10 minutes, check it's accurate — say *let's work on the Privacy page*`, last, because its sample-text marker has to go before launch. Check the site map line in stage 4. Next up: the first page, about 30 minutes. If there's a `**Pace:**` line, recompute it now that the pages are known: about 30 minutes per unchecked line.
 3. **`docs/project/interviews/sitemap.md`:** `**Status:** done`.
 4. Commit with `docs: save site map` and push.
 
