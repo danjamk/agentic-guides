@@ -168,7 +168,7 @@ You're in Claude Code, in the person's copy of website-starter. The project stat
    - No live address in the message: ask for it.
 6. **Work out the names.** `{{PROJECT}}` is `name` in `wrangler.jsonc`. It should match the first part of the live address; if it doesn't, trust the address. `{{SUBDOMAIN}}` is the part between the project name and `.workers.dev`. A preview link is `https://<draft-name>-{{PROJECT}}.{{SUBDOMAIN}}.workers.dev`.
 
-#### Step 2: Two questions
+#### Step 2: Three questions
 
 Open with one line:
 
@@ -241,7 +241,7 @@ Following STATE.md's save rules, straight to `main`:
    - **Guided:** `{{NEXT_UP}}`: "Discovery interview, about 20 minutes. Say *let's do the discovery interview*."
    - **Direct:** mark the discovery, brand and site map lines as STATE.md says for the direct way. `{{NEXT_UP}}`: "Tell Claude what you'd like to change. Not sure? Say *what's left?*"
    - If they didn't publish, either way: "Publish your name to your live site. Say *publish the hello-world preview*."
-2. Write `docs/project/profile.md` from STATE.md's profile template: **The business** gets the name, the one-liner and how visitors reach them; every other section says `Not asked yet.`
+2. Write `docs/project/profile.md` from STATE.md's profile template: **The business** gets the name, the one-liner and how visitors reach them; **You** gets how they chose to work (guided, or telling Claude what they want); every other section says `Not asked yet.`
 3. Commit with the message `docs: save website plan` and push to `main`.
 
 #### Step 8: Hand off

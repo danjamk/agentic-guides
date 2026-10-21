@@ -29,7 +29,7 @@ You are running the discovery interview for a person whose website was set up wi
 - **Speak plainly.** Same words as the installer: "your site's files on GitHub", "a draft", "publish to your live site". Explain any technical word the first time.
 - **One question at a time.** Wait for the answer. Accept short answers. Offer "skip" and "stop" in the opening line, then don't keep repeating it.
 - **Save as you go, per STATE.md:** write the interview file after each answer, and save to GitHub at every stop and at least every five answers.
-- **The results wait for a yes.** `profile.md`, decision records and plan changes are written only after the person approves the summary in Step 4. Interview answers are saved as you go; that's progress, not results.
+- **The results wait for a yes.** `profile.md`, decision records and plan changes are written only after the person approves the summary in Step 4, even though `CLAUDE.md` says to save facts as they come up. Interview answers are saved as you go; that's progress, not results.
 - **Never record passwords, account numbers, prices quoted to them by others, or details about other people beyond a name and a role.**
 - **Don't build anything.** No changes to the site's pages in this guide. If the person asks for one, note it and offer it after the interview.
 - **"I don't know" is fine.** Offer your best guess from what you know about them and confirm it, or mark the question `skipped`. Never push for an answer.
@@ -115,7 +115,7 @@ An add-on is **available** when the site's `CLAUDE.md` Guides table lists it. On
 - **Launch within four weeks:** add `- [ ] Launch with Home, Contact and {{MAIN_PAGE}} first; the rest after launch` as the first line of stage 5. `{{MAIN_PAGE}}`: the page that does the site's main job, such as Services, Menu or Products.
 - **Optional section:** mark add-ons that fit as recommended, with the reason in a few words:
   - Main job is email or enquiries: `- [ ] Contact form — recommended: your site's main job is getting enquiries`.
-  - Main job is phone calls: no contact form. Add `- [ ] Phone number at the top of every page — recommended: most people will call` to stage 5 instead. It's a small site change, not an add-on.
+  - Main job is phone calls: no contact form. Mark the Contact form line `— not needed: most people will call`, and add `- [ ] Phone number at the top of every page — recommended: most people will call` to stage 5 instead. It's a small site change, not an add-on.
   - Others will edit: `- [ ] Extra publishing safety — recommended: {{N}} people will edit`.
   - They have a site but chose reference only: `- [ ] Move your existing site`, in case they change their mind.
   - Donations, payments or bookings: `- [ ] Idea: <what they want> — needs an outside service; Claude can link to it`.

@@ -32,7 +32,7 @@ You are running the brand interview for a person whose website was set up with t
 - **"Enough questions"** or "just make something": mark the remaining taste questions `skipped`, propose answers yourself, and go straight to building.
 - **Waiting on someone else** ("I need to ask the board about colors"): mark that question `waiting` per STATE.md, carry on with questions that don't depend on it (voice doesn't depend on colors), and set Next up to say what's awaited.
 - **Save as you go, per STATE.md:** the interview file after each answer; save to GitHub at every stop and at least every five answers. Answers are saved on `main`. Switch to the `brand` draft only to change the site, and back to `main` to save answers.
-- **Fonts are part of this interview.** Installing free font packages is expected here. Say once, "I'll add two free fonts, stored with your site; nothing to pay," and their yes covers the package rule in `CLAUDE.md`.
+- **Fonts are part of this interview.** Installing free font packages is expected here. Say once, "I'll add two free fonts, stored with your site; nothing to pay," and their yes covers the package rule in `CLAUDE.md`. Skip this when every font you'll use is already installed (the starter's Inter).
 - **Never change a color the person supplied.** If a supplied color can't be read clearly on the site (see Step 4), change *where* it's used, or add a darker or lighter shade alongside it, and tell them.
 - **Fonts are served from the site itself.** Use font packages from npm (Fontsource) or font files the person owns a web license for. Never link fonts from Google Fonts or any other company's servers; record 0002 and the hard rules in `CLAUDE.md` explain why.
 - **Use only files the person gave you** for the logo and brand. Don't take images from other websites, and don't generate a logo. A logo designed elsewhere can replace the text logo later.
@@ -67,7 +67,9 @@ Open with one line, for example:
 
 > We'll start with your logo and colors, then a few questions about how your site should sound: {{COUNT}} questions, about {{MINUTES}} minutes. Say "skip" or "stop" any time, and "I don't know" is a fine answer; I'll suggest something.
 
-`{{COUNT}}`: the number of questions on the chosen path, voice included.
+On the create path, open with "We'll start with how you want your business to come across, and I'll show you two or three looks to pick from" instead of the first clause.
+
+`{{COUNT}}`: the number of questions on the chosen path, voice included. `{{MINUTES}}`: the brand stage's estimate in `PLAN.md`.
 
 ### Step 3a: Bring path
 
@@ -95,7 +97,7 @@ Open with one line, for example:
 **Building the options:**
 
 - Start a draft named `brand` (see the **preview** skill).
-- Each option: a main color, a neutral set (text, secondary text, borders, light background), and a font pairing (heading and body, or one font for both). Make the options differ in feel, not only in hue. Every option must pass the contrast check in Step 4 before you show it.
+- Each option: a main color, a neutral set (text, secondary text, borders, light background), and a font pairing (heading and body, or one font for both). If the person named a second color, or accepted one you suggested, give each option an accent (`--brand-accent`) used for highlighted backgrounds (`--color-bg-highlight`), so it isn't lost. Make the options differ in feel, not only in hue. Every option must pass the contrast check in Step 4 before you show it.
 - Fonts: install each option's font packages on the draft (`npm install @fontsource-variable/<slug>` where it exists, otherwise `@fontsource/<slug>`). At most three font families across all options.
 - Add `src/pages/brand-options.astro`, using the `Base` layout with `noindex`. For each option, a `<section class="section brand-scope">` that sets the option's `--brand-*` values (colors and `--brand-font-heading`/`--brand-font-body`) in its `style` attribute. The `brand-scope` class is what makes the page's text, links, buttons and headings use them. `npm run check` skips this page's colors from template 0.10.0; on an older template it reports "sets colors directly" for this page only, which is expected here. Add `section--alt` to every other option so they're easy to tell apart. Each shows: the option's letter and a one-line description; the business name as a heading; the tagline; a short paragraph; a link; a button; a card; and color swatches with their codes. Import the option fonts in this page only.
 - Build, save and send, wait for the preview, and give the person `https://brand-{{PROJECT}}.{{SUBDOMAIN}}.workers.dev/brand-options`.
