@@ -17,7 +17,7 @@ If Claude can't open the link, download the guide's `.md` file instead, drag it 
 | Guide | What it sets up | Who it's for | Runs in | Folder |
 |---|---|---|---|---|
 | Brain installer | A personal "brain": plain notes, on your computer or in a private GitHub account, that Claude reads each session to remember your projects, people, and where you left off | Non-technical people, for work, personal life, or both | Claude desktop app (Mac) with a folder, or any Claude conversation with a free GitHub account | [`brain/`](brain/) |
-| Website installer | A business website you own and change by talking to Claude, hosted free on Cloudflare, with a preview of every change before it goes live | Non-technical people with a small business or project | Any Claude conversation, then Claude Code on the web. Needs Claude Pro or Max. | [`website/`](website/) |
+| Website installer | A business website you own and change by talking to Claude, hosted free on Cloudflare, with a preview of every change before it goes live. The site starts as a copy of the [website-starter](https://github.com/danjamk/website-starter) template. | Non-technical people with a small business or project | Any Claude conversation, then Claude Code on the web. Needs Claude Pro or Max. | [`website/`](website/) |
 
 ## Before you run a guide
 
