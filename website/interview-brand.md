@@ -28,7 +28,11 @@ You are running the brand interview for a person whose website was set up with t
 
 - **Speak plainly.** "Colors," "fonts," "the logo at the top of every page." Say "hex code" only if they use it first, and then explain it ("the six-character code for a color, like #2B59C3").
 - **One question at a time.** Accept short answers. "Skip" and "stop" work any time.
-- **Save as you go, per STATE.md:** the interview file after each answer; save to GitHub at every stop and at least every five answers.
+- **"I don't know" gets a suggestion, not another question.** For feel, colors, examples and voice, propose an answer from `profile.md` and the kind of business ("For a plumber I'd go with dependable, quick, local. OK?"), and take a yes. Record it per STATE.md. Many people can't describe taste but can pick from options, so get to the options quickly.
+- **"Enough questions"** or "just make something": mark the remaining taste questions `skipped`, propose answers yourself, and go straight to building.
+- **Waiting on someone else** ("I need to ask the board about colors"): mark that question `waiting` per STATE.md, carry on with questions that don't depend on it (voice doesn't depend on colors), and set Next up to say what's awaited.
+- **Save as you go, per STATE.md:** the interview file after each answer; save to GitHub at every stop and at least every five answers. Answers are saved on `main`. Switch to the `brand` draft only to change the site, and back to `main` to save answers.
+- **Fonts are part of this interview.** Installing free font packages is expected here. Say once, "I'll add two free fonts, stored with your site; nothing to pay," and their yes covers the package rule in `CLAUDE.md`. Skip this when every font you'll use is already installed (the starter's Inter).
 - **Never change a color the person supplied.** If a supplied color can't be read clearly on the site (see Step 4), change *where* it's used, or add a darker or lighter shade alongside it, and tell them.
 - **Fonts are served from the site itself.** Use font packages from npm (Fontsource) or font files the person owns a web license for. Never link fonts from Google Fonts or any other company's servers; record 0002 and the hard rules in `CLAUDE.md` explain why.
 - **Use only files the person gave you** for the logo and brand. Don't take images from other websites, and don't generate a logo. A logo designed elsewhere can replace the text logo later.
@@ -39,7 +43,7 @@ You are running the brand interview for a person whose website was set up with t
 
 1. **Check you're in the site:** `wrangler.jsonc`, `src/site.config.ts`, `src/styles/tokens.css` and `docs/project/PLAN.md` exist. If `docs/project/brand-files/` is missing, this site is on a template older than 0.5.0: offer **template-update** first, or create that folder with a one-line `README.md` as a `docs/` save. If `src/styles/tokens.css` has no `.brand-scope`, the site is older than 0.9.0 and an options page won't show each option's colors: apply that update first (its CHANGELOG entry says how).
 2. **Get up to date:** switch to `main` and `git pull`.
-3. **Check discovery ran:** `docs/project/interviews/discovery.md` has `**Status:** done`. If not, recommend doing discovery first (about 20 minutes). If the person wants to go ahead anyway, ask question 0 below.
+3. **Check discovery ran:** `docs/project/interviews/discovery.md` has `**Status:** done`. If not, and `PLAN.md`'s way of working is `guided`, recommend doing discovery first (about 20 minutes). In the `direct` way, don't recommend it. Either way, if the person goes ahead, ask question 0 below.
 4. **Look for `docs/project/interviews/brand.md`:**
    - **Missing:** a new interview. Create it from STATE.md's interview template, with `**Guide:** brand-v1.0`, `**Status:** in progress`, and the questions for the path you choose in Step 2, all `pending`.
    - **`in progress`:** resume at the first `pending` question. Check for a `brand` draft (`git branch -r`); if one exists, you were past Step 3.
@@ -47,7 +51,7 @@ You are running the brand interview for a person whose website was set up with t
 
 ### Step 2: Choose the path
 
-Read the "Brand source" decision record in `docs/adr/` (from discovery) and the **Design and brand** section of `profile.md`.
+Read the "Brand source" and "Design source" decision records in `docs/adr/` (from discovery) and the **Design and brand** section of `profile.md`. If the design source names a tool such as Canva, ask for exports from it in Step 3a: the logo as SVG or PNG, and any page that shows their colors and fonts.
 
 | Brand source | Path |
 |---|---|
@@ -61,17 +65,21 @@ Then voice (Step 3c) on every path.
 
 Open with one line, for example:
 
-> We'll start with your logo and colors, then a few questions about how your site should sound. About {{MINUTES}} minutes. Say "skip" or "stop" any time.
+> We'll start with your logo and colors, then a few questions about how your site should sound: {{COUNT}} questions, about {{MINUTES}} minutes. Say "skip" or "stop" any time, and "I don't know" is a fine answer; I'll suggest something.
+
+On the create path, open with "We'll start with how you want your business to come across, and I'll show you two or three looks to pick from" instead of the first clause.
+
+`{{COUNT}}`: the number of questions on the chosen path, voice included. `{{MINUTES}}`: the brand stage's estimate in `PLAN.md`.
 
 ### Step 3a: Bring path
 
 1. **Upload your files.** "Please upload your logo, and any brand guidelines or color and font details you have, into your site's `docs/project/brand-files` folder on GitHub: open the folder, click **Add file** → **Upload files**, drag them in, then click **Commit changes**. Tell me when they're in."
    Give the folder's link: `https://github.com/{{OWNER}}/{{REPO}}/tree/main/docs/project/brand-files`.
-   [`files`. Then `git pull` and list what arrived. Read PDFs and images. If a logo is missing, say what would help (an SVG, or a PNG at least 512 pixels wide with a transparent background) and carry on without it.]
+   [`files`. Then `git pull` and list what arrived: `git log -3 --stat --format='%s' -- docs/project`. People often upload to the wrong folder, so accept files in `docs/project/uploads/` too, and move them to `brand-files/` as a `docs/` save. Read PDFs and images. If the file isn't a logo (a phone photo, say), describe what you see and ask again. If a logo is missing, say what would help (an SVG, or a PNG at least 512 pixels wide with a transparent background) and carry on without it.]
 2. **Colors.** "Do you have exact codes for your colors? They're often in brand guidelines, or your designer or printer will have them. If not, I can take them from your logo."
    [`colors`. From guidelines, the person, or the logo file: an SVG's `fill` and `stroke` values; for a PNG, describe the colors you see and ask the person to confirm or find the codes. Name each color by its role: main, second, and any accents.]
 3. **Fonts.** "Do you know which fonts your brand uses?"
-   [`fonts`. For each, check it's available as a free package: `npm view @fontsource-variable/<slug> version`, then `npm view @fontsource/<slug> version` (slug: lowercase, spaces as dashes). If neither exists, ask whether they own font files with a web license. If not, propose the closest free font and say why it's close. If they don't know, suggest one in Step 3b's way, from the logo's style.]
+   [`fonts`. For each, check it's available as a free package: `npm view @fontsource-variable/<slug> version`, then `npm view @fontsource/<slug> version` (slug: lowercase, spaces as dashes). If neither exists, ask whether they own font files with a web license. If not, propose the closest free font and say why it's close. If they don't know, propose one heading and body pairing that suits the logo's style, in words ("a rounded, friendly heading font with a plain body font"), and take a yes. Show it on the brand preview in Step 4; no options page is needed for one pairing.]
 4. **Logo.** "Does your logo include your business name written out, or is it a symbol on its own?"
    [`logo-type`. Name included: the header shows only the logo. Symbol only: the header shows the logo and the name as text. Also ask whether there's a square or icon version, for the browser tab.]
 
@@ -89,9 +97,9 @@ Open with one line, for example:
 **Building the options:**
 
 - Start a draft named `brand` (see the **preview** skill).
-- Each option: a main color, a neutral set (text, secondary text, borders, light background), and a font pairing (heading and body, or one font for both). Make the options differ in feel, not only in hue. Every option must pass the contrast check in Step 4 before you show it.
+- Each option: a main color, a neutral set (text, secondary text, borders, light background), and a font pairing (heading and body, or one font for both). If the person named a second color, or accepted one you suggested, give each option an accent (`--brand-accent`) used for highlighted backgrounds (`--color-bg-highlight`), so it isn't lost. Make the options differ in feel, not only in hue. Every option must pass the contrast check in Step 4 before you show it.
 - Fonts: install each option's font packages on the draft (`npm install @fontsource-variable/<slug>` where it exists, otherwise `@fontsource/<slug>`). At most three font families across all options.
-- Add `src/pages/brand-options.astro`, using the `Base` layout with `noindex`. For each option, a `<section class="section brand-scope">` that sets the option's `--brand-*` values (colors and `--brand-font-heading`/`--brand-font-body`) in its `style` attribute. The `brand-scope` class is what makes the page's text, links, buttons and headings use them. Add `section--alt` to every other option so they're easy to tell apart. Each shows: the option's letter and a one-line description; the business name as a heading; the tagline; a short paragraph; a link; a button; a card; and color swatches with their codes. Import the option fonts in this page only.
+- Add `src/pages/brand-options.astro`, using the `Base` layout with `noindex`. For each option, a `<section class="section brand-scope">` that sets the option's `--brand-*` values (colors and `--brand-font-heading`/`--brand-font-body`) in its `style` attribute. The `brand-scope` class is what makes the page's text, links, buttons and headings use them. `npm run check` skips this page's colors from template 0.10.0; on an older template it reports "sets colors directly" for this page only, which is expected here. Add `section--alt` to every other option so they're easy to tell apart. Each shows: the option's letter and a one-line description; the business name as a heading; the tagline; a short paragraph; a link; a button; a card; and color swatches with their codes. Import the option fonts in this page only.
 - Build, save and send, wait for the preview, and give the person `https://brand-{{PROJECT}}.{{SUBDOMAIN}}.workers.dev/brand-options`.
 - When they've chosen: remove the options page (`git rm src/pages/brand-options.astro`), uninstall font packages no longer used, and continue on the same draft with Step 4.
 
@@ -128,7 +136,7 @@ On the draft `brand` (create it now if the bring path didn't need one).
    | `--color-action-text` | `--color-action-bg`, `--color-action-bg-hover` |
    | `--color-focus` (3:1) | `--color-bg` |
 
-   Compute contrast with a one-off `node -e` command using the WCAG relative-luminance formula. Don't save it as a script. If a pair fails, change the semantic token to a shade that passes: point `--color-action-bg` at `--brand-primary-dark`, or add a darker `--brand-primary-deep` and use it for links and buttons. Never change a supplied brand color. Note each adjustment for `brand.md`.
+   From template 0.10.0, `npm run check` checks these pairs from `tokens.css`. For the options page, and on older templates, compute contrast with a one-off `node -e` command using the WCAG relative-luminance formula. Don't save it as a script. If a pair fails, change the semantic token to a shade that passes: point `--color-action-bg` at `--brand-primary-dark`, or add a darker `--brand-primary-deep` and use it for links and buttons. Never change a supplied brand color. Note each adjustment for `brand.md`.
 4. **Fonts:** install the chosen packages if they aren't already. In `src/layouts/Base.astro`, replace the `@fontsource-variable/inter` import with the new ones, importing only the weights the site uses (400, 500, 700) for non-variable packages. Set `--brand-font-body` and `--brand-font-heading` to the family names the packages define, followed by the fallback list already there. `npm uninstall @fontsource-variable/inter` if it's no longer used. For licensed font files: copy the `.woff2` files to `public/fonts/`, add `@font-face` rules at the top of `src/styles/global.css`, and note the license in `brand.md`.
 5. **Logo:** copy the logo from `docs/project/brand-files/` to `public/logo.svg` (or `.png`). Set `logo` in `src/site.config.ts`: `{ src: '/logo.svg', height: 40, showName: <from logo-type> }`. Use a height between 32 and 56 that suits the logo's shape. If a PNG is over about 300 KB, say so and suggest a smaller export.
 6. **Favicon** (the browser tab icon): if they gave a square or icon version as SVG, copy it to `public/favicon.svg`. Otherwise write a new `public/favicon.svg`: a rounded square in the main color with the first letter of the business name in white, using a generic font family. Don't use the full logo unless it's square.
@@ -151,7 +159,7 @@ Straight to `main`, per STATE.md, whether or not they published:
 1. **`docs/project/brand.md`** from Template A.
 2. **`docs/project/profile.md`:** update the **Design and brand** bullets.
 3. **`docs/project/interviews/brand.md`:** `**Status:** done`.
-4. **`docs/project/PLAN.md`:** check the brand line. Next up: "Site map interview, about 20 minutes. Say *let's plan the pages*." If they didn't publish, Next up is "Publish your new look. Say *publish the brand preview*."
+4. **`docs/project/PLAN.md`:** check the brand line, removing any "— skipped" note. Next up: "Site map interview, about 20 minutes. Say *let's plan the pages*," or in the `direct` way, "Tell Claude what you'd like to change." If they didn't publish, Next up is "Publish your new look. Say *publish the brand preview*."
 5. Commit with `docs: save brand interview results` and push.
 
 ### Step 7: Hand off
@@ -170,7 +178,7 @@ Straight to `main`, per STATE.md, whether or not they published:
 ~~~~markdown
 # Brand
 
-**Format:** website-state-v1.4 · **Made in:** brand-v1.0 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.5 · **Made in:** brand-v1.0 · **Last updated:** {{DATE}}
 
 Claude follows this file whenever it writes words or changes the look of the site.
 

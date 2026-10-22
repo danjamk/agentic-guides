@@ -15,7 +15,7 @@ It happens in two parts:
 1. **In any Claude conversation:** Claude checks your accounts, then you click one button that puts a starter site online. About 15–20 minutes.
 2. **In Claude Code on the web (claude.ai/code):** Claude puts your business name on the site, shows you a preview, and makes it live when you say yes. About 10 minutes.
 
-At the end you have a live site with your name on it, and a plan you can work through at your own pace, about 30 minutes at a time.
+At the end you have a live site with your name on it. Then you choose how to build the rest: Claude asks you questions in short sessions and keeps a plan, or you just tell Claude what you want and react to what it makes. You can switch any time.
 
 To start, open Claude in your web browser at claude.ai, start a new conversation, and paste:
 
@@ -156,7 +156,8 @@ You're in Claude Code, in the person's copy of website-starter. The project stat
 1. **Check this is a website-starter copy:** `wrangler.jsonc`, `src/site.config.ts` and `docs/project/PLAN.md` exist. If not, tell the person this doesn't look like their site's project and ask them to pick the right one in the repository selector.
 2. **Get up to date:** `git checkout main`, then `git pull`.
 3. **Check whether it's already set up.** Read `docs/project/PLAN.md` and `CLAUDE.md`.
-   - `PLAN.md` says "Not started": continue.
+   - `PLAN.md` says "Not started" and `CLAUDE.md` has no "Installed with" line: continue.
+   - `PLAN.md` says "Not started" but `CLAUDE.md` has the "Installed with" line: the hello world was published and the session ended before the plan was saved. Continue at Step 6.
    - `CLAUDE.md` has an "Installed with website-vX.Y" line older than this guide: offer the updates (see "Upgrading" below). Skip the rest of Part 2.
    - Same version: tell the person the site is already set up, read them the "Next up" line from `PLAN.md`, and stop.
    - `PLAN.md` has a plan but `CLAUDE.md` has no "Installed with" line: the person stopped before publishing. Check for a `hello-world` draft (`git branch -r`), show them its preview link, and continue at Step 4, item 8.
@@ -167,31 +168,35 @@ You're in Claude Code, in the person's copy of website-starter. The project stat
    - No live address in the message: ask for it.
 6. **Work out the names.** `{{PROJECT}}` is `name` in `wrangler.jsonc`. It should match the first part of the live address; if it doesn't, trust the address. `{{SUBDOMAIN}}` is the part between the project name and `.workers.dev`. A preview link is `https://<draft-name>-{{PROJECT}}.{{SUBDOMAIN}}.workers.dev`.
 
-#### Step 2: Two questions
+#### Step 2: Three questions
 
 Open with one line:
 
-> Two quick questions, then I'll show you your site with your name on it.
+> Three quick questions, then I'll show you your site with your name on it.
 
 1. **What's your business called?** Use the name the way it should appear on the site.
    [Fills `name` in `src/site.config.ts` and `{{BUSINESS}}` in Template A.]
 2. **In one sentence, what do you do and who is it for?** For example: "Custom cakes for weddings and birthdays in Portland."
-   [Fills `tagline` in `src/site.config.ts` and `{{ONE_LINER}}` in Template A. Also write `description` in `src/site.config.ts` from it: one plain sentence under 155 characters that includes the business name. Fix spelling, but keep their words.]
+   [Fills `tagline` in `src/site.config.ts` and `{{ONE_LINER}}` in Template A. Also write `description` in `src/site.config.ts` from it: one plain sentence under 155 characters that includes the business name. Fix spelling, but keep their words. If the answer runs past about 25 words, offer a shorter version made from their words and use it on a yes.]
+3. **How should visitors get in touch: phone, email, or both? What's the number or address?**
+   [Fills `phone` and `email` in `src/site.config.ts`. Set the one they don't want to `''`, which hides it everywhere. Without this, the starter's sample email shows on the live site.]
 
-Don't ask anything else here. The discovery interview comes next and covers the rest.
+Don't ask anything else here.
 
 #### Step 3: Confirm
 
 Say, in about three lines:
 
-> I'll put **{{BUSINESS}}** and "{{ONE_LINER}}" on your home page and make a preview link for you to check. Nothing changes on your live site until you say so. Go ahead?
+> I'll put **{{BUSINESS}}** and "{{ONE_LINER}}" on your home page, with {{CONTACT}} at the bottom of every page, and make a preview link for you to check. Nothing changes on your live site until you say so. Go ahead?
+
+`{{CONTACT}}`: "your phone number", "your email address" or "your phone number and email", from question 3.
 
 Wait for a yes. If they change anything, show the summary again.
 
 #### Step 4: Make the preview
 
 1. Create a draft named `hello-world`: `git checkout -b hello-world`. If that name exists, use `hello-world-2`. Draft names use only lowercase letters, numbers and dashes, never `/`, so the preview link is predictable.
-2. Edit `src/site.config.ts`: `name`, `tagline`, `description`. Change nothing else.
+2. Edit `src/site.config.ts`: `name`, `tagline`, `description`, `email`, `phone`. Change nothing else. If the file has no `phone` line, the template is older than 0.10.0: set `email` only, and if they want phone only, keep the sample email for now and note it for the plan.
 3. Add the "Who you're working for" section to `CLAUDE.md` from Template A. It goes on this draft, not straight to `main`, because STATE.md lets only `docs/` changes skip the preview.
 4. Check it builds and passes the checks: `npm ci`, then `npm run build`, then `npm run check`. If any of them fails, stop and explain.
 5. Save and send it: commit with the message `Put business name on the site`, then `git push -u origin hello-world`.
@@ -216,21 +221,38 @@ If they say no or "later", leave the draft as it is. Record it in the plan's "Ne
 
 Claude Code can't delete the draft afterward, and doesn't need to. It stays on GitHub, out of the way.
 
-#### Step 6: Save the plan
+#### Step 6: Choose how to build the rest
+
+Ask:
+
+> Your site's online. There are two ways to build the rest, and you can switch any time:
+> - **Guided:** I ask you questions in short sessions, about 20–30 minutes each: about you, your look, your pages, then going live. About 3–5 hours in all, spread over as many days as you like. Best if you're not sure yet what your site needs.
+> - **Just tell me what you want:** "add a prices page," "make it teal." I'll ask only what each change needs and show you a preview. Best if you know what you want.
+>
+> Which suits you?
+
+[Sets `{{WAY}}`: `guided` or `direct`. If they're unsure, recommend guided for someone with no picture of the site yet, and direct for someone who already describes what they want.]
+
+#### Step 7: Save the plan and profile
 
 Following STATE.md's save rules, straight to `main`:
 
-1. Write `docs/project/PLAN.md` from STATE.md's PLAN.md template. Check all three boxes in stage 1. `{{NEXT_UP}}`: "Discovery interview, about 20 minutes. Say *let's do the discovery interview*." If they didn't publish, make it "Publish your name to your live site. Say *publish the hello-world preview*."
-2. Commit with the message `docs: save website plan` and push to `main`.
+1. Write `docs/project/PLAN.md` from STATE.md's PLAN.md template. Check all three boxes in stage 1. `{{WAY}}` from Step 6.
+   - **Guided:** `{{NEXT_UP}}`: "Discovery interview, about 20 minutes. Say *let's do the discovery interview*."
+   - **Direct:** mark the discovery, brand and site map lines as STATE.md says for the direct way. `{{NEXT_UP}}`: "Tell Claude what you'd like to change. Not sure? Say *what's left?*"
+   - If they didn't publish, either way: "Publish your name to your live site. Say *publish the hello-world preview*."
+2. Write `docs/project/profile.md` from STATE.md's profile template: **The business** gets the name, the one-liner and how visitors reach them; **You** gets how they chose to work (guided, or telling Claude what they want); every other section says `Not asked yet.`
+3. Commit with the message `docs: save website plan` and push to `main`.
 
-#### Step 7: Hand off
+#### Step 8: Hand off
 
 Tell the person, a line or two each:
 
 1. **It's done.** Their site is live at {{LIVE_URL}} with their name on it, and their plan is saved with their site's files.
-2. **How to come back.** Open https://claude.ai/code, pick the site's project and the same environment, and say *"let's keep going."* Claude reads the plan and suggests what's next. They can stop any time; the next session picks up where they left off.
-3. **What's next.** Read them the "Next up" line. Stages take about 30 minutes each and can be done whenever suits them.
-4. **Try one thing now.** "Tell me one thing you'd change on your home page." Make the change the same way as Step 4: draft, preview link, then publish on yes. Use a new draft name, such as `home-page-1`.
+2. **How to come back.** Open https://claude.ai/code, pick the site's project and the same environment, and say *"let's keep going."* They can stop any time; the next session picks up where they left off.
+3. **What's next.**
+   - **Guided:** read the "Next up" line, and offer to start the discovery interview now if they have 20 minutes.
+   - **Direct:** "Tell me the first thing you'd like on your site." Make it with the site's **preview** skill: draft, preview link, then publish on yes.
 
 #### Upgrading
 
@@ -263,7 +285,7 @@ Installed with website-v1.0 on {{DATE}}. The website guides and add-ons are list
 ~~~~
 
 Fill rules:
-- `{{OWNER}}` and `{{REPO}}`: from `git remote get-url origin`.
+- `{{OWNER}}` and `{{REPO}}`: from `git remote get-url origin`. If that isn't a `github.com` address (Claude Code on the web may show a proxy address; not checked), take them from the address's last two parts, and confirm with the person: "Your site's files are at github.com/<owner>/<repo>, right?"
 - `{{DATE}}`: today.
 - Insert the section right after the first paragraph of `CLAUDE.md`, before "Project state". Change nothing else in the file.
 

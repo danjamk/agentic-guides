@@ -1,6 +1,6 @@
 # Website project state files
 
-**Version:** website-state-v1.4 (2026-10-20)
+**Version:** website-state-v1.5 (2026-10-21)
 
 The format every website guide uses to save a person's progress, and to pick it up again in a later session. The installer, the interviews and the template all read and write these files, so they follow this spec and not their own variants.
 
@@ -17,19 +17,19 @@ Astro only builds `src/` and `public/`, so nothing in `docs/` is published on th
 | File | Written by | Holds |
 |---|---|---|
 | `docs/project/PLAN.md` | The installer creates it; every guide updates it | The person's plan: stages, time estimates, checkboxes, and one "Next up" line |
-| `docs/project/profile.md` | The discovery interview; later interviews update it | A short summary of who the person is and what shapes the site's strategy |
+| `docs/project/profile.md` | The installer starts it; the discovery interview fills it; any session adds business facts the person mentions | A short summary of who the person is and what shapes the site's strategy |
 | `docs/project/interviews/<name>.md` | Each interview, one file per interview | Every question with its answer, or marked skipped or pending |
 | `docs/project/brand.md` | The brand interview; its format is Template A in `interview-brand.md` | Colors, fonts, logo and voice. Claude follows it whenever it writes words or changes the look |
 | `docs/project/brand-files/` | The person, by uploading on GitHub's website | Logo, guidelines and other brand files, as the person gave them. Read by the brand interview; never published |
 | `docs/project/uploads/` | The person, by uploading on GitHub's website | Photos and documents for pages. Read by the page interview, which copies what a page needs into `public/`; never published from here |
 | `docs/project/sitemap.md` | The site map interview creates it; the page interview updates each page's status | Every page: address, purpose, menu placement, status, and the old address it replaces. Format: Template A in `interview-sitemap.md` |
 
-`<name>` is the interview's short name: `discovery`, `brand`, `sitemap`, or `page-<page-slug>` for a page interview (`page-about`). Decisions an interview makes as architecture decision records go in `docs/adr/`, defined by the base ADRs (#18, base ADRs), not here.
+`<name>` is the interview's short name: `discovery`, `brand`, `sitemap`, or `page-<page-slug>` for a page interview (`page-about`). Decisions an interview makes as architecture decision records go in `docs/adr/`, as described in `docs/adr/README.md` in the person's site, not here.
 
 Every file starts with a format line, so a later guide can tell which version of this spec wrote it:
 
 ~~~~markdown
-**Format:** website-state-v1.4
+**Format:** website-state-v1.5
 ~~~~
 
 ## PLAN.md
@@ -37,9 +37,10 @@ Every file starts with a format line, so a later guide can tell which version of
 ~~~~markdown
 # Website plan
 
-**Format:** website-state-v1.4 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.5 · **Last updated:** {{DATE}}
 
 **Next up:** {{NEXT_UP}}
+**Way of working:** {{WAY}}
 **Pace:** {{PACE}}
 
 ## 1. Get a site online — about 15 minutes
@@ -71,7 +72,8 @@ Every file starts with a format line, so a later guide can tell which version of
 Fill rules:
 - `{{DATE}}`: today, `YYYY-MM-DD`.
 - `{{NEXT_UP}}`: one action the person can start next, with its time estimate, in plain words: "Discovery interview, about 20 minutes. Say *let's do the discovery interview*." Rewrite it every time a guide ends or stops.
-- `{{PACE}}`: written by the discovery interview, from the person's time per week and launch date. Leave the whole line out until then, or if they skipped both.
+- `{{WAY}}`: how the person chose to build the rest of the site, asked by the installer. `guided`: the interviews, one step at a time. `direct`: they say what they want and Claude makes it. The site's `CLAUDE.md` says how each works. They can switch any time; update the line.
+- `{{PACE}}`: written by the discovery interview, from the person's time per week and launch date, and recomputed by the site map interview. Leave the whole line out until then, or if they skipped both. Format: `{{TIME}} a week, so about {{WEEKS}} weeks to launch{{DATE_NOTE}}.` To count the work left: each unchecked line in stages 2–4 at its stage's estimate; 30 minutes per unchecked page line in stage 5, with the "Added after the site map interview" line counting as five pages, and 10 minutes for any other stage 5 line (such as "Phone number at the top of every page"); 30 minutes for stage 6 if it isn't done. Leave out the Optional section and lines marked skipped or not needed. If the person gave a range of time ("an hour or two"), use the low end. `{{DATE_NOTE}}`: `, ahead of <their date>` if that's in time; `. That's after your <date>, so we'd cut pages or add time` if not; nothing if they gave no date.
 - `{{PAGE_LINES}}`: one `- [ ] <Page name>` line per page. Until the site map interview has run, write `- [ ] Added after the site map interview`. The site map interview replaces that one line with the page lines; it's the only line any guide removes.
 
 Rules:
@@ -79,6 +81,8 @@ Rules:
 - A guide may add lines inside its own stage, for example one per page.
 - The discovery interview may also add lines to any stage, change any stage's time estimate, and mark optional add-ons as recommended, because its job is fitting the plan to the person.
 - No guide deletes a line or a stage, or reorders stages. A line that no longer applies gets "— not needed: <reason>" after it.
+- **The direct way:** the installer marks each interview line `— skipped: you chose to ask for changes directly; say *<the interview's phrase>* any time`. The site's **publish** skill adds a checked stage 5 line for each page made by request, and marks the "Added after the site map interview" line not needed.
+- **Ideas:** any guide or session may add `- [ ] Idea: <what the person asked about> (<date>)` to the Optional section, for something they asked about that has no step yet ("Idea: take cake deposits online"). It keeps the request from being lost.
 - An interview that stops partway leaves its box unchecked and puts "(in progress)" after the line.
 - Time estimates are for the person's time, not Claude's.
 
@@ -87,9 +91,9 @@ Rules:
 ~~~~markdown
 # About you and your site
 
-**Format:** website-state-v1.4 · **Last updated:** {{DATE}}
+**Format:** website-state-v1.5 · **Last updated:** {{DATE}}
 
-Written from the discovery interview. Claude reads this before every session; edit it any time.
+Started by the installer and filled in by the discovery interview. Claude adds facts as you mention them and reads this before every session; edit it any time.
 
 ## You
 {{YOU}}
@@ -111,6 +115,8 @@ Fill rules:
 - Each section is two to five short bullets, written as facts about the person: "Comfortable editing text, not code." "Has a logo as a PNG; no brand colors defined."
 - `{{DECISIONS}}`: one bullet per decision, linking its ADR when there is one: "Keep the current domain, move it later ([0007](../adr/0007-keep-domain.md))." Records 0001–0006 come with the template; the person's start at 0007.
 - A section with no answers yet says `Not asked yet.` A section the person skipped says `Skipped.` Never leave a placeholder.
+- **The installer** writes the first version: **The business** gets the business name, the one-liner, and how visitors reach them; every other section says `Not asked yet.` Discovery fills the rest.
+- **Any session** may add a bullet to **The business** when the person mentions a fact a page might need: hours, prices, area served, a booking link, qualifications. Facts about the person (their name, how comfortable they are with technology, how they like to work) go under **You**. That's how the next session knows it. The discovery interview is the exception: it saves to `profile.md` only after the person approves its summary.
 
 The interview files hold the full answers. `profile.md` is the summary a guide reads first. When a later interview changes something here, it updates the bullet and the date.
 
@@ -119,7 +125,7 @@ The interview files hold the full answers. `profile.md` is the summary a guide r
 ~~~~markdown
 # {{INTERVIEW_TITLE}}
 
-**Format:** website-state-v1.4 · **Guide:** {{GUIDE_VERSION}}
+**Format:** website-state-v1.5 · **Guide:** {{GUIDE_VERSION}}
 **Status:** {{STATUS}} · **Started:** {{STARTED}} · **Last updated:** {{UPDATED}}
 
 ## {{QUESTION_ID}}
@@ -131,11 +137,12 @@ The interview files hold the full answers. `profile.md` is the summary a guide r
 One `##` section per question, in the guide's order, written when the interview starts so the whole list is visible from the first session.
 
 Fill rules:
+- `{{INTERVIEW_TITLE}}`: the guide's title, plus the page for a page interview: "Discovery interview", "Page interview: Services", "Add-on: Your own web address".
 - `{{GUIDE_VERSION}}`: the stamp of the guide running the interview, for example `discovery-v1.0`.
-- `{{STATUS}}`: `in progress` or `done`. It is `done` only when no question is `pending`.
+- `{{STATUS}}`: `in progress` or `done`. It is `done` only when no question is `pending` or `waiting` **and** the guide has finished its last step. A guide with steps after its questions (an add-on, or an interview that builds a preview) adds `**Reached:** <step name>` on the line below the status while it's in progress, and removes it when done.
 - `{{QUESTION_ID}}`: the guide's stable ID for the question, such as `github-account`. A guide never reuses an ID for a different question. That is how a newer guide version matches old answers to its questions.
-- `{{ANSWER_STATUS}}`: `pending`, `answered` or `skipped`.
-- `{{ANSWER}}`: the person's answer in their own words, trimmed, or Claude's summary of a long answer, marked "(summary)". Empty while `pending`. For `skipped`, the reason if they gave one.
+- `{{ANSWER_STATUS}}`: `pending`, `answered`, `skipped` or `waiting`. `waiting` means the person needs someone else first; the answer says who: "Waiting on: the board." Carry on with questions that don't depend on it. Next up names what's awaited, and the next session asks about it first.
+- `{{ANSWER}}`: the person's answer in their own words, trimmed, or Claude's summary of a long answer, marked "(summary)". Empty while `pending`. For `skipped`, the reason if they gave one. When the person says "I don't know" and Claude proposes an answer they accept, record it as "(Claude's suggestion, accepted) <the answer>".
 
 Never write passwords, tokens, API keys or payment details into any state file, even if the person types them in an answer. Write "(given, not saved)" instead.
 
@@ -161,7 +168,7 @@ At the start of any website guide:
 2. Read `PLAN.md` and `profile.md`. If either is missing, the installer has not finished: run its resume step instead.
 3. Look for interview files with `**Status:** in progress`. If the person asked for something else, mention the unfinished interview in one line and do what they asked.
 4. Look for state saved on other branches by mistake: `git log main..origin/<branch> --oneline -- docs/project` for each remote branch. If any commits turn up, tell the person and offer to bring those files into `main`.
-5. Before resuming an interview, say where it stands in one line: "You've answered 7 of 12 discovery questions; last time was October 18." Continue at the first `pending` question.
+5. Before resuming an interview, say where it stands in one line: "You've answered 7 of 12 discovery questions; last time was October 18." Ask about any `waiting` question first ("Has the board picked the colors?"), then continue at the first `pending` question.
 
 Answers given after the last push in a session that has since ended are gone. The interview file shows the last saved question. Ask from there and do not guess the lost answers.
 
@@ -184,11 +191,28 @@ When a file's `Format:` is older than this spec, apply the changelog entries bel
 ## Template contents
 
 website-starter ships:
-- `docs/project/PLAN.md` and `docs/project/profile.md`, with the format line and `Not started.` The installer replaces both.
+- `docs/project/PLAN.md` and `docs/project/profile.md`, with the format line and `Not started.` The installer replaces both: the full plan, and a first profile.
 - `docs/project/interviews/` holding a `README.md` that points to this spec.
 - A "Project state" section in `CLAUDE.md` that points to these files and to this spec on `main`.
 
 ## Changelog
+
+### website-state-v1.5 (2026-10-21)
+- **`**Way of working:**` line in PLAN.md,** `guided` or `direct`, asked by the installer. In the direct way, interview lines are marked skipped and **publish** adds page lines. Affects: PLAN.md template, fill rules and rules.
+  Existing files: recommended.
+  How to apply: ask the person once whether they'd like the interviews or to just say what they want, and add the line under "Next up".
+- **Pace counting defined**, including `{{DATE_NOTE}}`. Affects: PLAN.md fill rules.
+  Existing files: not needed. The next guide to write the pace line uses the new rule.
+  How to apply: nothing to change.
+- **`Idea:` lines** in the Optional section. Affects: PLAN.md rules.
+  Existing files: not needed.
+  How to apply: nothing to change.
+- **The installer writes `profile.md`,** and any session adds business facts to it. Affects: Files table, profile.md fill rules, Template contents.
+  Existing files: recommended for a profile still saying `Not started.`
+  How to apply: write it from the business name, one-liner and contact details in `src/site.config.ts`, with `Not asked yet.` elsewhere.
+- **Interview files:** a `waiting` answer status; `done` needs the guide's last step too, with an optional `**Reached:**` line; "I don't know" answers record Claude's accepted suggestion; `{{INTERVIEW_TITLE}}` defined. Affects: interview template fill rules.
+  Existing files: not needed.
+  How to apply: nothing to change.
 
 ### website-state-v1.4 (2026-10-20)
 - **`docs/project/uploads/`** joins the state files, for page photos and documents. Affects: Files table.

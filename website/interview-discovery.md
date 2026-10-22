@@ -29,9 +29,11 @@ You are running the discovery interview for a person whose website was set up wi
 - **Speak plainly.** Same words as the installer: "your site's files on GitHub", "a draft", "publish to your live site". Explain any technical word the first time.
 - **One question at a time.** Wait for the answer. Accept short answers. Offer "skip" and "stop" in the opening line, then don't keep repeating it.
 - **Save as you go, per STATE.md:** write the interview file after each answer, and save to GitHub at every stop and at least every five answers.
-- **The results wait for a yes.** `profile.md`, decision records and plan changes are written only after the person approves the summary in Step 4. Interview answers are saved as you go; that's progress, not results.
+- **The results wait for a yes.** `profile.md`, decision records and plan changes are written only after the person approves the summary in Step 4, even though `CLAUDE.md` says to save facts as they come up. Interview answers are saved as you go; that's progress, not results.
 - **Never record passwords, account numbers, prices quoted to them by others, or details about other people beyond a name and a role.**
 - **Don't build anything.** No changes to the site's pages in this guide. If the person asks for one, note it and offer it after the interview.
+- **"I don't know" is fine.** Offer your best guess from what you know about them and confirm it, or mark the question `skipped`. Never push for an answer.
+- **"Enough questions"** ends the interview early: mark the remaining questions `skipped` and go to Step 3 with what you have.
 - **Never delete a stage or a line from the plan.** STATE.md says how to change it.
 
 ### Step 1: Preflight
@@ -44,6 +46,7 @@ You are running the discovery interview for a person whose website was set up wi
    - **`in progress`:** resume per STATE.md. Say where it stands in one line and continue at the first `pending` question. If its `Guide:` is older, follow STATE.md's rules for that.
    - **`done`:** the interview has run. Ask whether they want to change some answers. If yes, ask only those questions again, then redo Steps 3–5 for what changed.
 5. **Check `docs/adr/`** and note the highest record number there. Your records start at the next number.
+6. **Way of working:** if `PLAN.md` says `direct`, the person asked for this interview themselves. Run it as normal; when you save the results, remove the "— skipped" note from the discovery line, and ask in the hand-off whether they'd like to switch to the guided way.
 
 ### Step 2: Interview
 
@@ -63,16 +66,16 @@ Ask in order. The ID in brackets is the question's `##` heading in the interview
    [`design-tools`. Fills profile **Design and brand**. Decides whether the brand interview starts from their files or from descriptions and examples (decision: design source).]
 
 4. **What do you already have for your brand?** A logo, colors, fonts, brand guidelines, photos, or nothing yet. Just list them; you'll share the files in the brand interview.
-   [`brand-assets`. Fills profile **Design and brand**. Decision: brand source. Changes the brand stage's time estimate.]
+   [`brand-assets`. Fills profile **Design and brand**. Decision: brand source. Changes the brand stage's time estimate. A logo with no digital file (only on printed flyers, say) counts as not supplied; note it, because it can be photographed or redrawn later.]
 
 5. **Do you have a website now?** If yes: what's the address, and do you want to keep its words and pages, use it only as a starting point, or replace it completely?
-   [`existing-site`. Fills profile **Existing website**. Decision: starting point. Adds the "Move an existing site" add-on to the plan if they want to keep pages.]
+   [`existing-site`. Fills profile **Existing website**. Decision: starting point. Changes stage 4 (see Step 3).]
 
 6. **What does the business do, and what's the main thing the site should get visitors to do?** For example: call or email you, book an appointment, buy something, read your work, or find your opening hours.
-   [`business-and-goal`. Fills profile **The business**. The site map interview builds on it. If the goal is getting in touch, the contact form add-on goes in the plan as recommended.]
+   [`business-and-goal`. Fills profile **The business**. The site map interview builds on it. If they give two jobs ("get volunteers and donations"), ask which matters more and keep both, ranked; more than two, ask for the top two. The first job decides the menu and the home page; the second gets its own page in the menu.]
 
 7. **Will anyone else make changes to the site?** If yes, who, in a word or two each (a partner, an employee, a designer).
-   [`other-editors`. Fills profile **You**. If others will edit, the "Extra publishing safety" add-on goes in the plan as recommended, and each person will need their own GitHub account.]
+   [`other-editors`. Fills profile **You**. If others will edit, the "Extra publishing safety" add-on goes in the plan as recommended. Tell them each person needs their own GitHub account and their own Claude plan with Claude Code (Pro or Max, a monthly cost), to work the same way.]
 
 8. **How much time can you give this in a typical week?**
    [`time-per-week`. Fills profile **You** and the plan's pace line.]
@@ -98,19 +101,28 @@ When no question is `pending`, turn the answers into decisions and plan changes.
 | Starting point | Move the existing site's pages · Use the existing site as reference only · Start fresh | They have a site |
 | Editors | Only them · Them and named others | Others will edit |
 | Paid services | None for now · A web address only · A web address and paid services | Always, unless skipped |
-| Launch scope | Launch with Home, About and Contact, add the rest after · All planned pages before launch | They gave a date within four weeks |
+| Launch scope | Launch with Home, Contact and the page that does the site's main job (Services, Menu, Products), add the rest after · All planned pages before launch | They gave a date within four weeks |
 
 **Plan changes.** STATE.md lets discovery adjust any stage. Never delete a line or a stage; mark it instead.
 
 - **Brand stage (3):** "about 15 minutes" if the brand is supplied, "about 45 minutes" if it's created here. Partly supplied stays at 30.
-- **Existing site, moving pages:** add `- [ ] Move your existing site (add-on), before the site map` as the first line of stage 4.
+An add-on is **available** when the site's `CLAUDE.md` Guides table lists it. One that isn't listed has no guide yet: write its line with "(not available yet)" at the end, and never make it Next up.
+
+- **Existing site, moving pages:**
+  - If the "Move your existing site" add-on is available, add `- [ ] Move your existing site (add-on), before the site map` as the first line of stage 4.
+  - If not, add `- [ ] Bring over your old site's pages — the site map interview lists them, and each page interview asks for the old page's words` as the first line of stage 4. Tell the person that's how their old pages come across for now.
 - **Existing site, reference only:** add `- [ ] Collect what to keep from your old site` as the first line of stage 4.
-- **Launch within four weeks:** add `- [ ] Launch with Home, About and Contact first; the rest after launch` as the first line of stage 5.
-- **Optional section:** mark add-ons that fit as recommended, with the reason in a few words: `- [ ] Contact form — recommended: your site's main job is getting enquiries`. Add `- [ ] Extra publishing safety — recommended: {{N}} people will edit` if others will edit. Add `- [ ] Move your existing site` here too if they have a site but chose reference only, in case they change their mind.
+- **Launch within four weeks:** add `- [ ] Launch with Home, Contact and {{MAIN_PAGE}} first; the rest after launch` as the first line of stage 5. `{{MAIN_PAGE}}`: the page that does the site's main job, such as Services, Menu or Products.
+- **Optional section:** mark add-ons that fit as recommended, with the reason in a few words:
+  - Main job is email or enquiries: `- [ ] Contact form — recommended: your site's main job is getting enquiries`.
+  - Main job is phone calls: no contact form. Mark the Contact form line `— not needed: most people will call`, and add `- [ ] Phone number at the top of every page — recommended: most people will call` to stage 5 instead. It's a small site change, not an add-on.
+  - Others will edit: `- [ ] Extra publishing safety — recommended: {{N}} people will edit`.
+  - They have a site but chose reference only: `- [ ] Move your existing site`, in case they change their mind.
+  - Donations, payments or bookings: `- [ ] Idea: <what they want> — needs an outside service; Claude can link to it`.
 - **No budget:** change the "Connect your own domain" line to `- [ ] Connect your own domain — optional; it has a yearly fee. Your free address works until then`.
-- **Pace line:** add `**Pace:** {{TIME}} a week, so about {{WEEKS}} weeks to launch{{DATE_NOTE}}.` under "Next up". Count about 30 minutes per unchecked line, and count stage 5's "Added after the site map interview" line as five pages. The site map interview recomputes this line once the pages are known. If they skipped the time question, leave the line out.
+- **Pace line:** add the `**Pace:**` line under "Next up", counted as STATE.md says. The site map interview recomputes it once the pages are known. If they skipped the time question, leave the line out.
 - **Mark stage 2 done:** check "Discovery interview".
-- **Next up:** the brand interview, with its new estimate. If they're moving an existing site, the next up is the "Move your existing site" add-on instead.
+- **Next up:** the brand interview, with its new estimate. If they're moving an existing site and the add-on is available, Next up is the add-on instead.
 
 ### Step 4: Confirm
 
@@ -126,7 +138,7 @@ Show a summary in plain words, under about 15 lines. For example:
 >
 > Your plan changes: the brand step stays at about 30 minutes, the contact form is marked recommended, and next up is the brand interview. Save this?
 
-Wait for a yes. If they change anything, update the answers in the interview file and show the summary again.
+Wait for a yes. If they change anything, update the answers in the interview file and show the summary again. They can change any decision here, including the launch scope; record what they chose.
 
 ### Step 5: Save the results
 
